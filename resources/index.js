@@ -1,3 +1,4 @@
 import renderBooks from './components/Libreria.js'
+import * as Biblioteca from './functions/LibrosController.js';
 
-//renderBooks()
+renderBooks(Biblioteca.libros)
