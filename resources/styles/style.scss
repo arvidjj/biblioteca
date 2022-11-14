@@ -77,6 +77,9 @@ button {
     &:active {
         transform: translateY(1px);
     }
+    &.active {
+        background-color: $secondary-color-light;
+    }
 }
 
 select {
@@ -184,6 +187,10 @@ header {
     display: flex;
 }
 
+.inactive {
+    display: none;
+}
+
 strong {
     color: $main-color
 }
@@ -195,7 +202,7 @@ hr {
 
 nav {
     display: none;
-    
+
     @include devices(desktop) {
         display: flex;
         //grid-area: nav;
@@ -204,19 +211,22 @@ nav {
         width: 220px;
         border-right: 2px solid $main-color;
         font-size: 1.2rem;
+
         &.navBar {
-            display:flex;
+            display: flex;
             flex-direction: column;
+
             .dashboardDiv {
-                display:flex;
-                padding-inline:40px;
+                display: flex;
+                padding-inline: 40px;
             }
+
             ul {
                 li {
                     a {
-                        display:flex;
+                        display: flex;
                         align-items: center;
-                        gap:20px;
+                        gap: 20px;
                     }
                 }
             }
@@ -226,7 +236,7 @@ nav {
 
 #content {
 
-    @include devices(desktop){
+    @include devices(desktop) {
         //grid-area: content;
         grid-column: 2;
         grid-row: 2;
@@ -240,14 +250,19 @@ main {
     align-items: center;
 
     @include devices(desktop) {
+        align-items: flex-start;
+
         h1 {
             width: 100%;
         }
-
-        hr {
-            width: 80rem;
-        }
     }
+}
+
+.books-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
 .book-options {
@@ -256,12 +271,19 @@ main {
     }
 
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap:5px;
     margin-bottom: 5px;
 
     @include devices(desktop) {
-        width: 100%;
+        width: 50%;
         margin-block: 1rem;
+        align-self: flex-start;
+
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: row;
     }
 }
 
@@ -279,7 +301,7 @@ main {
         grid-auto-rows: auto;
         gap: 15px;
         align-self: center;
-        width:100%;
+        width: 100%;
     }
 
     .container-item {
@@ -317,17 +339,75 @@ main {
     }
 }
 
-footer {
-    margin-top: auto;
-    background-color: $main-color;
-    padding: 1.5rem;
-    color: $color2;
+/*PRESTAMOS PANTALLA*/
+.prestamos-layout {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    @include devices(desktop) {
-        // grid-area: footer;
-        grid-column: 1/ 3;
-        grid-row: 3;
+    gap:15px;
+}
+
+.prestamos-options {
+    display:flex;
+    flex-direction: column;
+    h2 {
+        margin: 0;
+    }
+    ul {
+        margin: 0;
+        padding: 0;
+        li {
+            margin:1rem;
+        }
     }
 }
+
+table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+
+    thead tr {
+        background-color: $secondary-color;
+        color: #ffffff;
+        text-align: left;
+    }
+
+    th,
+    td {
+        padding: 12px 15px;
+    }
+
+    tbody tr {
+        border-bottom: 1px solid #dddddd;
+
+        &:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+
+        &:last-of-type {
+            border-bottom: 2px solid $secondary-color;
+        }
+        &.active-row {
+            font-weight: bold;
+            color: $secondary-color;
+        }
+    }
+}
+
+
+    footer {
+        margin-top: auto;
+        background-color: $main-color;
+        padding: 1.5rem;
+        color: $color2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @include devices(desktop) {
+            // grid-area: footer;
+            grid-column: 1/ 3;
+            grid-row: 3;
+        }
+    }

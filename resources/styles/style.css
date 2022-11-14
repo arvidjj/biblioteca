@@ -43,6 +43,9 @@ button:hover {
 button:active {
   transform: translateY(1px);
 }
+button.active {
+  background-color: #5757d1;
+}
 
 select {
   width: 200px;
@@ -142,6 +145,10 @@ header #hamburger-icon {
   display: flex;
 }
 
+.inactive {
+  display: none;
+}
+
 strong {
   color: #13a3e0;
 }
@@ -192,17 +199,26 @@ main {
   align-items: center;
 }
 @media only screen and (min-width: 1000px) {
+  main {
+    align-items: flex-start;
+  }
   main h1 {
     width: 100%;
   }
-  main hr {
-    width: 80rem;
-  }
+}
+
+.books-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
 .book-options {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 5px;
   margin-bottom: 5px;
 }
 .book-options p {
@@ -210,8 +226,12 @@ main {
 }
 @media only screen and (min-width: 1000px) {
   .book-options {
-    width: 100%;
+    width: 50%;
     margin-block: 1rem;
+    align-self: flex-start;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
   }
 }
 
@@ -259,6 +279,57 @@ main {
   width: 120px;
   -o-object-fit: contain;
      object-fit: contain;
+}
+
+/*PRESTAMOS PANTALLA*/
+.prestamos-layout {
+  display: flex;
+  gap: 15px;
+}
+
+.prestamos-options {
+  display: flex;
+  flex-direction: column;
+}
+.prestamos-options h2 {
+  margin: 0;
+}
+.prestamos-options ul {
+  margin: 0;
+  padding: 0;
+}
+.prestamos-options ul li {
+  margin: 1rem;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+}
+table thead tr {
+  background-color: #4747a5;
+  color: #ffffff;
+  text-align: left;
+}
+table th,
+table td {
+  padding: 12px 15px;
+}
+table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+table tbody tr:last-of-type {
+  border-bottom: 2px solid #4747a5;
+}
+table tbody tr.active-row {
+  font-weight: bold;
+  color: #4747a5;
 }
 
 footer {
