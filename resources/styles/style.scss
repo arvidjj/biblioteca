@@ -41,10 +41,25 @@ body {
     min-height: 100vh;
 
     background-color: white;
+
+    @include devices(desktop) {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto 1fr;
+    }
 }
 
 h1 {
     margin-block: 1rem;
+}
+
+a {
+    color: initial;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
 }
 
 button {
@@ -54,13 +69,16 @@ button {
     font-size: 1rem;
     border: none;
     background-color: $secondary-color;
+
     &:hover {
         background-color: $secondary-color-light;
     }
+
     &:active {
         transform: translateY(1px);
-      }
+    }
 }
+
 select {
     width: 200px;
     height: 30px;
@@ -69,12 +87,14 @@ select {
     font-weight: bold;
     color: $main-color;
     background-color: #eee;
-  }
+}
+
 label {
     font-size: 1rem;
 }
 
 header {
+
     background-color: $main-color;
     display: flex;
     justify-content: center;
@@ -86,11 +106,19 @@ header {
     @include devices(desktop) {
         background-color: white;
         justify-content: flex-start;
+        //grid-area: header;
+        grid-column: 2 / span 1;
+        grid-row: 1 / 1;
 
         h1 {
             margin-inline: 1rem;
             margin: 2rem;
             margin-bottom: 1rem;
+
+            &::before {
+                border: 1px solid black;
+                content: '';
+            }
         }
     }
 
@@ -165,13 +193,54 @@ hr {
     width: 100%;
 }
 
+nav {
+    display: none;
+    
+    @include devices(desktop) {
+        display: flex;
+        //grid-area: nav;
+        grid-column: 1;
+        grid-row: 1 / 3;
+        width: 220px;
+        border-right: 2px solid $main-color;
+        font-size: 1.2rem;
+        &.navBar {
+            display:flex;
+            flex-direction: column;
+            .dashboardDiv {
+                display:flex;
+                padding-inline:40px;
+            }
+            ul {
+                li {
+                    a {
+                        display:flex;
+                        align-items: center;
+                        gap:20px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+#content {
+
+    @include devices(desktop){
+        //grid-area: content;
+        grid-column: 2;
+        grid-row: 2;
+        padding: 1rem;
+    }
+}
+
 main {
     display: flex;
     flex-direction: column;
     align-items: center;
+
     @include devices(desktop) {
         h1 {
-            max-width: 80vw;
             width: 100%;
         }
 
@@ -183,13 +252,14 @@ main {
 
 .book-options {
     p {
-        margin:0;
+        margin: 0;
     }
+
     display: flex;
     align-items: center;
     margin-bottom: 5px;
+
     @include devices(desktop) {
-        max-width: 80vw;
         width: 100%;
         margin-block: 1rem;
     }
@@ -203,12 +273,13 @@ main {
 
     width: 95vw;
     scroll-behavior: auto;
+
     @include devices(desktop) {
         grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
         grid-auto-rows: auto;
         gap: 15px;
-        width: 80vw;
         align-self: center;
+        width:100%;
     }
 
     .container-item {
@@ -254,4 +325,9 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
+    @include devices(desktop) {
+        // grid-area: footer;
+        grid-column: 1/ 3;
+        grid-row: 3;
+    }
 }

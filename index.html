@@ -9,7 +9,7 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="resources/styles/style.css">
-
+    <link rel="shortcut icon" href="resources/images/icon.png">
     <script src="./resources/index.js" type="module"></script>
 </head>
 
@@ -20,46 +20,48 @@
             menu
         </span>
         <ul class="mobile-menu">
-            <li><a id="mobileAbout" href="#" class="mobile-button">About</a></li>
-            <li><a id="mobileMenu" href="#" class="mobile-button">Menu</a></li>
+            <li><a id="mobileLibreria" href="#" class="mobile-button">Libreria</a></li>
+            <li><a id="mobilePrestamos" href="#" class="mobile-button">Prestamos</a></li>
             <li><a id="mobileContact" href="#" class="mobile-button">Contact</a></li>
         </ul>
     </header>
+    <nav class="navBar">
+        <div class="dashboardDiv">
+            <p>Menu</p>
+        </div>
+        <ul>
+            <li>
+                <a href="#" id="menuLibreria">
+                    <span class="material-symbols-outlined">
+                        library_books
+                        </span><p>Libreria</p>
+                </a>
+            </li>
+            <li>
+                <a href="#" id="menuPrestamos">
+                    <span class="material-symbols-outlined">
+                        receipt_long
+                        </span><p>Prestamos</p>
+                </a>
+            </li>
+            <li>
+                <a href="#" id="menuUsuarios">
+                    <span class="material-symbols-outlined">
+                        group
+                        </span><p>Usuarios</p>
+                </a>
+            </li>
+        </ul>
+    </nav>
     <div id="content">
         <main>
-            <h1><strong>Libreria</strong></h1>
+            <h1><strong>Prestamos</strong></h1>
             <hr>
-            <div class="book-options">
-                <form action="" id="filter-form">
-                    <label for="filter-select">Filtrar por:</label>
-                    <select name="filter-option" id="filter-select">
-                        <option value="titulo">Titulo</option>
-                        <option value="autores">Autor</option>
-                    </select>
-                    <button id="filter-button" style="
-                    cursor:pointer;">Filtrar</button>
-                </form>
+            <div class="prestamos-options">
+                
             </div>
-            <div class="book-container" id="book-container">
-                <div class="container-item" id="item-1">
-                    <div class="item-image">
-                        <img src="./resources/images/libros/libroejemplo.png" alt="Book">
-                    </div>
-                    <div class="item-info">
-                        <h3 id="info-title">Titulo</h3>
-                        <p id="info-author">Autor</p>
-                    </div>
-                </div>
-                <div class="container-item" id="item-2">
-                    <div class="item-image">
-                        <img src="./resources/images/libros/libroejemplo.png" alt="Book">
-                    </div>
-                    <div class="item-info">
-                        <h3 id="info-title">Titulo</h3>
-                        <p id="info-author">Autor</p>
-                    </div>
-                </div>
-
+            <div class="prestamos-container" id="prestamos-container">
+               
             </div>
         </main>
     </div>

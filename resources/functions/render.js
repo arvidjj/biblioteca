@@ -1,4 +1,5 @@
 
 export default function render(render, component) {
-    component.innerHTML = 'render';
+    component.innerHTML = ``;
+    component.appendChild(render);
 }
