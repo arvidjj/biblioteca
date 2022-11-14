@@ -140,6 +140,16 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    @include devices(desktop) {
+        h1 {
+            max-width: 80vw;
+            width: 100%;
+        }
+
+        hr {
+            width: 80rem;
+        }
+    }
 }
 
 .book-options {
