@@ -10,7 +10,7 @@ function renderPrestamos(prestamosToRender) {
     console.log('rendering Items...')
 
     const menuItemContainer = document.querySelector('#prestamos-container');
-    menuItemContainer.innerHTML = ``;
+    menuItemContainer.innerHTML = `<button class="btn2" id="nuevo-prestamo">Nuevo Prestamo</button>`;
     console.log(prestamosToRender)
     const newTable = document.createElement('table');
     const newTableBody = document.createElement('tbody');
@@ -18,7 +18,7 @@ function renderPrestamos(prestamosToRender) {
         <thead>
             <tr>
                 <th>#</th>
-                <th>Libro</th>
+                <th>Libros</th>
                 <th>Cliente</th>
                 <th>Fecha de Prestamo</th>
                 <th>Fecha de Devolucion</th>
@@ -32,7 +32,7 @@ function renderPrestamos(prestamosToRender) {
         itemCell.setAttribute('id', `item-${index}`)
         itemCell.innerHTML = `
         <td>${index}</td>
-        <td>${item.libro.titulo}</td>
+        <td>${item.libro.length}</td>
         <td>${item.cliente.nombre} ${item.cliente.apellido}</td>
         <td>${item.fecha}</td>
         <td>${item.fechadevolucion}</td>

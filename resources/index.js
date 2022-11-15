@@ -14,12 +14,28 @@ const mainContent = document.querySelector('#content');
 
 // renderLibreria();
 // renderBooks(Biblioteca.libros)
-// toggleComponent(document.querySelector('.books-display'))
-renderPrestamosTab();
-renderPrestamos(Prestamos.prestamos)
+
+// renderPrestamosTab();
+// renderPrestamos(Prestamos.prestamos)
+
+// toggleComponent(document.querySelector('.prestamos-layout'))
+
 
 const mobileMenuButton = document.querySelector('#hamburger-icon')
 const mobileMenu = document.querySelector('.mobile-menu')
 mobileMenuButton.addEventListener('click', ()=>{
     mobileMenu.classList.toggle('open')
+})
+
+/*NAVBAR*/
+
+const menuLibreria = document.querySelector('#menuLibreria')
+const menuPrestamos = document.querySelector('#menuPrestamos')
+menuLibreria.addEventListener('click', ()=>{
+    renderLibreria();
+    renderBooks(Biblioteca.libros)
+})
+menuPrestamos.addEventListener('click', ()=>{
+    renderPrestamosTab();
+    renderPrestamos(Prestamos.prestamos)
 })

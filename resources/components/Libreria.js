@@ -13,19 +13,18 @@ function renderBooks(booksToRender) {
     booksToRender.forEach((item, index) => {
         const itemImage = `./resources/images/libros/${item.imagen}` //obtener imagen
         const itemCard = document.createElement('div');
+        const estado = item.stock === 0 ? `Sin stock: ${item.stock}` : `En stock: ${item.stock}`
         itemCard.classList.add('container-item')
-        itemCard.setAttribute('id', `item-${index}`)
-
+        itemCard.setAttribute('id', `item-${item.id}`)
         itemCard.innerHTML = `
-        <div class="container-item" id="item-${index}">
             <div class="item-image">
                 <img src="${itemImage}" alt="Book">
             </div>
             <div class="item-info">
                 <h3 id="info-title">${item.titulo}</h3>
                 <p id="info-author">${item.autores}</p>
+                <p>${estado}</p>
             </div>
-        </div>
         `
 
         menuItemContainer.appendChild(itemCard);

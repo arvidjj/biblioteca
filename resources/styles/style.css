@@ -46,6 +46,12 @@ button:active {
 button.active {
   background-color: #5757d1;
 }
+button.btn2 {
+  background-color: #13a3e0;
+}
+button.btn2:hover {
+  background-color: #51b7e2;
+}
 
 select {
   width: 200px;
@@ -146,7 +152,7 @@ header #hamburger-icon {
 }
 
 .inactive {
-  display: none;
+  display: none !important;
 }
 
 strong {
@@ -268,7 +274,7 @@ main {
   margin-inline: 0;
 }
 .book-container .container-item .item-info p {
-  margin-top: 0;
+  margin: 0;
 }
 .book-container .container-item .item-image {
   display: flex;
@@ -330,6 +336,21 @@ table tbody tr:last-of-type {
 table tbody tr.active-row {
   font-weight: bold;
   color: #4747a5;
+}
+
+.nuevo-prestamo {
+  max-width: 30rem;
+}
+
+.nuevo-prestamo-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
 }
 
 footer {

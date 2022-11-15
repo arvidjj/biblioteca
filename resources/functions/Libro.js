@@ -1,6 +1,7 @@
 export default class Libro {
     constructor(titulo, descripcion, autores, anho, editorial,
-                stock, imagen) {
+        stock, imagen) {
+        this.id = Libro.incrementId()
         this.titulo = titulo
         this.descripcion = descripcion
         this.autores = autores
@@ -8,5 +9,12 @@ export default class Libro {
         this.editorial = editorial
         this.stock = stock
         this.imagen = imagen
+        this.prestado = false;
+    }
+
+    static incrementId() {
+        if (!this.latestId) this.latestId = 1
+        else this.latestId++
+        return this.latestId
     }
 }
