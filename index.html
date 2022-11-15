@@ -34,21 +34,24 @@
                 <a href="#" id="menuLibreria">
                     <span class="material-symbols-outlined">
                         library_books
-                        </span><p>Libreria</p>
+                    </span>
+                    <p>Libreria</p>
                 </a>
             </li>
             <li>
                 <a href="#" id="menuPrestamos">
                     <span class="material-symbols-outlined">
                         receipt_long
-                        </span><p>Prestamos</p>
+                    </span>
+                    <p>Prestamos</p>
                 </a>
             </li>
             <li>
                 <a href="#" id="menuUsuarios">
                     <span class="material-symbols-outlined">
                         group
-                        </span><p>Usuarios</p>
+                    </span>
+                    <p>Usuarios</p>
                 </a>
             </li>
         </ul>
@@ -59,14 +62,41 @@
             <h1>Nuevo Prestamo</h1>
             <form action="" class="nuevo-prestamo-form">
                 <div class="form-row">
-                    <label for="ci">CI del Cliente</label>
-                    <input type="text" name="ci" id="ci">
-                    <span id="info-cliente"></span>
-                </div>
+                    <div class="row-field">
+                        <label for="formci">CI del Cliente</label>
+                        <input type="text" name="formci" id="formci">
+                        <span id="info-cliente"></span>
+                    </div>
 
+                    <div class="row-field">
+                        <label for="formnombre">Cliente</label>
+                        <input type="text" name="formnombre" id="formnombre" disabled>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="row-field">
+                        <label for="formid">ID de Libro</label>
+                        <input type="text" name="formid" id="formid">
+                        <span id="info-libro"></span>
+                    </div>
+                    <div class="row-field">
+                        <label for="formdias">Dias de Prestamo</label>
+                        <input type="text" name="formdias" id="formdias">
+                        <span id="info-dias"></span>
+                    </div>
+                </div>
+                <p>Informacion de libro</p>
+                <div class="form-column">
+                    <label for="formtitulo">Titulo</label>
+                    <input type="text" name="formtitulo" id="formtitulo" disabled>
+                    <label for="formanho">Anho</label>
+                    <input type="text" name="formanho" id="formanho" disabled>
+                    <label for="formgenero">Genero</label>
+                    <input type="text" name="formgenero" id="formgenero" disabled>
+                </div>
                 <div class="form-buttons">
-                    <button>Aceptar</button>
-                    <button>Cancelar</button>
+                    <button id="prestamo-accept">Confirmar Prestamo</button>
+                    <button id="prestamo-cancel">Cancelar</button>
                 </div>
             </form>
         </div>

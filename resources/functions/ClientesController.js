@@ -17,6 +17,4 @@ agregarCliente(cliente1);
 agregarCliente(cliente2);
 agregarCliente(cliente3);
 
-console.log(getCliente('111'))
-
 export { Clientes as clientes, agregarCliente, getCliente };

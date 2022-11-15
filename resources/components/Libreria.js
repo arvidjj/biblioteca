@@ -23,7 +23,10 @@ function renderBooks(booksToRender) {
             <div class="item-info">
                 <h3 id="info-title">${item.titulo}</h3>
                 <p id="info-author">${item.autores}</p>
-                <p>${estado}</p>
+                <div class="item-stock" style="display:flex; justify-content:space-between;">
+                    <p>${estado}</p>
+                    <p>ID: ${item.id}</p>
+                </div>
             </div>
         `
 

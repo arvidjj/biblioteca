@@ -410,19 +410,43 @@ table {
 }
 
 .nuevo-prestamo{
-    max-width:30rem;
+    background-color: $background;
+    border: black 1px solid; 
+    width: fit-content;
+    border-radius: 16px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .nuevo-prestamo-form{
     display:flex;
     flex-direction: column;
-    gap:15px;
+    p {
+        margin:0;
+        margin-top:5px;
+    }
+    .form-row {
+        display: flex;
+        gap:15px;
+        margin-block: 10px;
+    }
+    .form-column {
+        display: flex;
+        flex-direction: column;
+        margin-block: 15px;
+    }
+    .row-field {
+        display: flex;
+        flex-direction: column;
+    }
+    .form-buttons {
+        display: flex;
+        justify-content: space-between;
+    }
 }
 
-.form-row {
-    display: flex;
-    flex-direction: column;
-}
 
 
 footer {

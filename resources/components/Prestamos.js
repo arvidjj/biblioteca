@@ -1,6 +1,9 @@
 import * as Biblioteca from '../functions/LibrosController.js';
 import * as Prestamos from '../functions/PrestamosController.js';
 import * as Clientes from '../functions/ClientesController.js';
+
+import * as PrestamoForm from './NuevoPrestamoController.js';
+
 import render from '../functions/render.js';
 
 const mainContent = document.querySelector('#content');
