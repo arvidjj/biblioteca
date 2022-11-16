@@ -11,7 +11,6 @@ const prestamosList = Prestamos.prestamos;
 
 function renderPrestamos(prestamosToRender) {
     console.log('rendering Items...')
-
     const menuItemContainer = document.querySelector('#prestamos-container');
     menuItemContainer.innerHTML = `<button class="btn2" id="nuevo-prestamo">Nuevo Prestamo</button>`;
     console.log(prestamosToRender)
@@ -33,13 +32,14 @@ function renderPrestamos(prestamosToRender) {
     prestamosToRender.forEach((item, index) => {
         const itemCell = document.createElement('tr');
         itemCell.setAttribute('id', `item-${index}`)
+        const vencido = (item.fechadevolucion < new Date()) ? `Si` : `No`;
         itemCell.innerHTML = `
         <td>${index}</td>
-        <td>${item.libro.length}</td>
+        <td>${item.libro.titulo}</td>
         <td>${item.cliente.nombre} ${item.cliente.apellido}</td>
-        <td>${item.fecha}</td>
-        <td>${item.fechadevolucion}</td>
-        <td>No</td>
+        <td>${item.fecha.getDate()}/${item.fecha.getMonth() + 1}/${item.fecha.getFullYear()}</td>
+        <td>${item.fechadevolucion.getDate()}/${item.fechadevolucion.getMonth() + 1}/${item.fechadevolucion.getFullYear()}</td>
+        <td>${vencido}</td>
         `
 
         newTableBody.appendChild(itemCell);

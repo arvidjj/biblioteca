@@ -58,48 +58,45 @@
     </nav>
     <div id="content">
 
-        <div class="nuevo-prestamo">
-            <h1>Nuevo Prestamo</h1>
-            <form action="" class="nuevo-prestamo-form">
-                <div class="form-row">
-                    <div class="row-field">
-                        <label for="formci">CI del Cliente</label>
-                        <input type="text" name="formci" id="formci">
-                        <span id="info-cliente"></span>
+        <div class="nuevo-devolucion">
+            
+            <form action="" class="nuevo-devolucion-form">
+                <h1>Devolucion</h1>
+                <div class="devolucion-form-structure">
+                    <div class="left-column-form">
+                        <div class="form-row">
+                            <div class="row-field">
+                                <label for="formci">CI del Cliente</label>
+                                <input type="text" name="formci" id="formci">
+                                <span id="info-cliente"></span>
+                            </div>
+                            <div class="row-field">
+                                <label for="formnombre">Cliente</label>
+                                <input type="text" name="formnombre" id="formnombre" disabled>
+                            </div>
+                        </div>
+                        <p>Informacion de libro</p>
+                        <div class="form-column">
+                            <label for="formtitulo">Titulo</label>
+                            <input type="text" name="formtitulo" id="formtitulo" disabled>
+                            <label for="formanho">Anho</label>
+                            <input type="text" name="formanho" id="formanho" disabled>
+                            <label for="formgenero">Genero</label>
+                            <input type="text" name="formgenero" id="formgenero" disabled>
+                        </div>
                     </div>
-
-                    <div class="row-field">
-                        <label for="formnombre">Cliente</label>
-                        <input type="text" name="formnombre" id="formnombre" disabled>
+                    <div class="form-buttons">
+                        <button id="prestamo-cancel">Cancelar</button>
                     </div>
-                </div>
-                <div class="form-row">
-                    <div class="row-field">
-                        <label for="formid">ID de Libro</label>
-                        <input type="text" name="formid" id="formid">
-                        <span id="info-libro"></span>
-                    </div>
-                    <div class="row-field">
-                        <label for="formdias">Dias de Prestamo</label>
-                        <input type="text" name="formdias" id="formdias">
-                        <span id="info-dias"></span>
-                    </div>
-                </div>
-                <p>Informacion de libro</p>
-                <div class="form-column">
-                    <label for="formtitulo">Titulo</label>
-                    <input type="text" name="formtitulo" id="formtitulo" disabled>
-                    <label for="formanho">Anho</label>
-                    <input type="text" name="formanho" id="formanho" disabled>
-                    <label for="formgenero">Genero</label>
-                    <input type="text" name="formgenero" id="formgenero" disabled>
-                </div>
-                <div class="form-buttons">
-                    <button id="prestamo-accept">Confirmar Prestamo</button>
-                    <button id="prestamo-cancel">Cancelar</button>
                 </div>
             </form>
+            <div class="right-column-form">
+                <h2 id="devolucion-cliente"></h2>
+                <div id="devolucion-container">
+                </div>
+            </div>
         </div>
+    </div>
 
     </div>
 

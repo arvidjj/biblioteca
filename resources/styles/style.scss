@@ -20,7 +20,7 @@ $small-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     }
 
     @if $breakpoint ==tablet {
-        @media only screen and (max-width: 680px) {
+        @media only screen and (max-width: 1170px) {
             @content;
         }
     }
@@ -394,6 +394,9 @@ table {
     tbody tr {
         border-bottom: 1px solid #dddddd;
 
+        &.hoverable:hover {
+            background-color: #f3f3f3;
+        }
         &:nth-of-type(even) {
             background-color: #f3f3f3;
         }
@@ -409,7 +412,7 @@ table {
     }
 }
 
-.nuevo-prestamo{
+.nuevo-prestamo, .nuevo-devolucion{
     background-color: $background;
     border: black 1px solid; 
     width: fit-content;
@@ -419,35 +422,47 @@ table {
     flex-direction: column;
     align-items: center;
 }
-
-.nuevo-prestamo-form{
-    display:flex;
-    flex-direction: column;
-    p {
-        margin:0;
-        margin-top:5px;
-    }
-    .form-row {
-        display: flex;
-        gap:15px;
-        margin-block: 10px;
-    }
-    .form-column {
-        display: flex;
+.nuevo-devolucion{
+    flex-direction: row;
+    gap:15px;
+    @include devices(tablet){
         flex-direction: column;
-        margin-block: 15px;
-    }
-    .row-field {
-        display: flex;
-        flex-direction: column;
-    }
-    .form-buttons {
-        display: flex;
-        justify-content: space-between;
+        gap:0px;
     }
 }
+.nuevo-prestamo-form, .nuevo-devolucion-form {
+    display:flex;
+    flex-direction: column; 
+}
 
+.devolucion-form-structure{
+    display:flex;
+    flex-direction: column;
+    gap:15px;
+} 
 
+p {
+    margin:0;
+    margin-top:5px;
+}
+.form-row {
+    display: flex;
+    gap:15px;
+    margin-block: 10px;
+}
+.form-column {
+    display: flex;
+    flex-direction: column;
+    margin-block: 15px;
+}
+.row-field {
+    display: flex;
+    flex-direction: column;
+}
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+}
 
 footer {
     margin-top: auto;

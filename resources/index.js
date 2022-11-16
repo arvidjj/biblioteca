@@ -44,7 +44,7 @@ menuPrestamos.addEventListener('click', ()=>{
 
 
 
-/*PRESTAMO FORM*/
+/*DEVOLUCION FORM*/
 const formDisplay = document.querySelector('.nuevo-prestamo')
 const formPrestamo = document.querySelector('.nuevo-prestamo-form')
 
@@ -61,46 +61,61 @@ const formGeneroLibro = document.querySelector('#formgenero')
 const formConfirmButton = document.querySelector('#prestamo-accept')
 const formCancelButton = document.querySelector('#prestamo-cancel')
 
-formCiCliente.addEventListener('input', ()=>{
+formCiCliente.addEventListener('input', () => {
     let clienteEncontrado = Clientes.getCliente(formCiCliente.value);
     if (clienteEncontrado !== undefined) {
         formNombreCliente.value = clienteEncontrado.nombre;
+        renderDevolucionTable(clienteEncontrado)
     } else {
         formNombreCliente.value = `No encontrado`;
     }
 })
 
-formIdLibro.addEventListener('input', ()=>{
-    let libroEncontrado = Biblioteca.getLibroById(+formIdLibro.value);
-    if (libroEncontrado !== undefined) {
-        formTituloLibro.value = libroEncontrado.titulo;
-        formAnhoLibro.value = libroEncontrado.anho;
-        formGeneroLibro.value = libroEncontrado.categoria;
-    } else {
-        formTituloLibro.value = `No encontrado`;
-        formAnhoLibro.value = `No encontrado`;
-        formGeneroLibro.value = `No encontrado`;
-    }
-})
 
+function renderDevolucionTable(cliente) {
+    console.log('rendering Items...')
+    const prestamosDeCliente = Prestamos.getPrestamosFromCliente(cliente);
+    const menuItemContainer = document.querySelector('#devolucion-container');
+    menuItemContainer.innerHTML = ''
+    console.log(prestamosDeCliente)
+    const clienteLabel = document.querySelector('#devolucion-cliente')
+    clienteLabel.textContent = `Cliente: ${cliente.nombre} ${cliente.apellido}`
+    const newTable = document.createElement('table');
+    const newTableBody = document.createElement('tbody');
+    newTable.innerHTML = `
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Libro</th>
+                <th>Fecha de Prestamo</th>
+                <th>Fecha de Devolucion</th>
+                <th>Vencido</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+                        `
+    newTable.appendChild(newTableBody)
+    prestamosDeCliente.forEach((item, index) => {
+        const itemCell = document.createElement('tr');
+        itemCell.classList.add('hoverable')
+        itemCell.setAttribute('id', `item-${index}`)
+        itemCell.innerHTML = `
+        <td>${index}</td>
+        <td>${item.libro.titulo}</td>
+        <td>${item.fecha.getDate()}/${item.fecha.getMonth() + 1}/${item.fecha.getFullYear()}</td>
+        <td>${item.fechadevolucion.getDate()}/${item.fechadevolucion.getMonth() + 1}/${item.fechadevolucion.getFullYear()}</td>
+        <td>nose</td>
+        <td><button onclick="devolverLibro(${item.libro})">Devolver</button></td>
+        `
 
-formPrestamo.addEventListener('submit', (e)=>{
-    e.preventDefault();
+        newTableBody.appendChild(itemCell);
+        console.log(`rendering ${index}`)
+    })
+    menuItemContainer.appendChild(newTable)
+    addTableEventListeners();
+    //newTable.innerHTML += `</tbody></table>`
+}
 
-    //CHECKEAR VALIDACION DE CAMPOS
-    /**/
-    const hoy = new Date();
-    const vencimiento = new Date()
-    vencimiento.setDate(hoy.getDate() + +formDiasLibro.value); //obtener fecha de vencimiento
-    const nuevoPrestamo = new Prestamo //SE GENERA NUEVO PRESTAMO
-    (Clientes.getCliente(formCiCliente.value), [Biblioteca.getLibroById(+formIdLibro.value)]
-    , hoy, vencimiento);
-    /**/
-    console.log(nuevoPrestamo)
-    Prestamos.agregarPrestamo(nuevoPrestamo);
-    //toggleComponent(formDisplay);
-})
-formCancelButton.addEventListener('click', (e)=>{
-    e.preventDefault();
-    toggleComponent(formDisplay);
-})
+function addTableEventListeners() {
+
+}

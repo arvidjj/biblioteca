@@ -5,4 +5,11 @@ export default class Prestamo {
         this.fecha = fecha
         this.fechadevolucion = fechadevolucion
     }
+
+    /*addLibro(libro) {
+        this.libros.push(libro);
+    }
+    removeLibro(libro) {
+        this.libros.splice(this.libros.indexOf(libro), 1);
+    }*/
 }
