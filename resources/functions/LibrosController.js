@@ -17,9 +17,12 @@ const item2 = new Libro('D Titulo', 'Un mal libro', 'A autor', '2004', 'Genero1'
 1, 'libroejemplo.png')
 const item3 = new Libro('A Titulo', 'Un libro', 'X autor', '2007', 'Genero2', 'lairotide',
 1, 'libroejemplo.png')
+const item4 = new Libro('C Titulo', 'Genial libro', 'Y autor', '2010', 'Genero3', 'lairotide',
+2, 'libroejemplo.png')
 
 agregarLibro(item1);
 agregarLibro(item2);
 agregarLibro(item3);
+agregarLibro(item4);
 
 export { Biblioteca as libros, agregarLibro, getLibro, getLibroById };

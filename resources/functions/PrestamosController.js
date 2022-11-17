@@ -7,7 +7,7 @@ const Prestamos = [];
 function agregarPrestamo(prestamo) {
     Prestamos.push(prestamo);
 }
-function quitarPrestamo(prestamo) {
+function quitarPrestamo(...prestamo) {
     Prestamos.splice(Prestamos.indexOf(prestamo), 1);
 }
 function getPrestamosFromCliente(cliente) {
@@ -19,10 +19,12 @@ Clientes.getCliente('111').prestarLibro(Libros.getLibro('A Titulo'));
 const item2 = new Prestamo(Clientes.getCliente('222'), Libros.getLibro('B Titulo')
                             , new Date(2022, 10, 8), new Date(2022,10, 14))
 Clientes.getCliente('222').prestarLibro(Libros.getLibro('B Titulo'));
-//const item3 = new Prestamo(cliente3, libro3, '2022-10-01', '2022-10-05')
+const item3 = new Prestamo(Clientes.getCliente('111'), Libros.getLibro('C Titulo')
+                            , new Date(2022, 10, 15), new Date(2022,10, 25))
+Clientes.getCliente('111').prestarLibro(Libros.getLibro('C Titulo'));
 
 agregarPrestamo(item1);
 agregarPrestamo(item2);
-//agregarPrestamo(item3);
+agregarPrestamo(item3);
 
 export { Prestamos as prestamos, agregarPrestamo, quitarPrestamo, getPrestamosFromCliente };

@@ -59,10 +59,10 @@
     <div id="content">
 
         <div class="nuevo-devolucion">
-            
-            <form action="" class="nuevo-devolucion-form">
-                <h1>Devolucion</h1>
-                <div class="devolucion-form-structure">
+
+            <div class="form-data">
+                <form action="" class="nuevo-devolucion-form">
+                    <h1>Devolucion</h1>
                     <div class="left-column-form">
                         <div class="form-row">
                             <div class="row-field">
@@ -85,17 +85,19 @@
                             <input type="text" name="formgenero" id="formgenero" disabled>
                         </div>
                     </div>
-                    <div class="form-buttons">
-                        <button id="prestamo-cancel">Cancelar</button>
+                </form>
+                <div class="right-column-form">
+                    <h2 id="devolucion-cliente"></h2>
+                    <div id="devolucion-container">
                     </div>
                 </div>
-            </form>
-            <div class="right-column-form">
-                <h2 id="devolucion-cliente"></h2>
-                <div id="devolucion-container">
-                </div>
+            </div>
+            <div class="form-buttons">
+                <button id="prestamo-cancel">Cancelar</button>
+                <button id="prestamo-devolver">Confirmar Devolucion</button>
             </div>
         </div>
+    </div>
     </div>
 
     </div>

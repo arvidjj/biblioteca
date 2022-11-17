@@ -355,11 +355,17 @@ table tbody tr.active-row {
 }
 
 .nuevo-devolucion {
-  flex-direction: row;
+  flex-direction: column;
+  gap: 15px;
+  align-items: flex-start;
+}
+
+.form-data {
+  display: flex;
   gap: 15px;
 }
 @media only screen and (max-width: 1170px) {
-  .nuevo-devolucion {
+  .form-data {
     flex-direction: column;
     gap: 0px;
   }
@@ -401,6 +407,7 @@ p {
 .form-buttons {
   display: flex;
   justify-content: space-between;
+  width: 100%;
 }
 
 footer {

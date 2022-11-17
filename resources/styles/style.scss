@@ -423,7 +423,13 @@ table {
     align-items: center;
 }
 .nuevo-devolucion{
-    flex-direction: row;
+    flex-direction: column;
+    gap:15px;
+    align-items: flex-start;
+}
+
+.form-data {
+    display:flex;
     gap:15px;
     @include devices(tablet){
         flex-direction: column;
@@ -462,6 +468,7 @@ p {
 .form-buttons {
     display: flex;
     justify-content: space-between;
+    width: 100%;
 }
 
 footer {

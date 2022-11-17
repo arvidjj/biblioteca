@@ -1,11 +1,15 @@
-import { render, toggleComponent} from './functions/render.js';
-import { renderBooks, 
-        renderComponent as renderLibreria} 
-            from './components/Libreria.js'
+import { render, toggleComponent } from './functions/render.js';
+import {
+    renderBooks,
+    renderComponent as renderLibreria
+}
+    from './components/Libreria.js'
 
-import { renderPrestamos, 
-    renderComponent as renderPrestamosTab} 
-            from './components/Prestamos.js'
+import {
+    renderPrestamos,
+    renderComponent as renderPrestamosTab
+}
+    from './components/Prestamos.js'
 
 import * as Biblioteca from './functions/LibrosController.js';
 import * as Prestamos from './functions/PrestamosController.js';
@@ -25,7 +29,7 @@ const mainContent = document.querySelector('#content');
 
 const mobileMenuButton = document.querySelector('#hamburger-icon')
 const mobileMenu = document.querySelector('.mobile-menu')
-mobileMenuButton.addEventListener('click', ()=>{
+mobileMenuButton.addEventListener('click', () => {
     mobileMenu.classList.toggle('open')
 })
 
@@ -33,11 +37,11 @@ mobileMenuButton.addEventListener('click', ()=>{
 
 const menuLibreria = document.querySelector('#menuLibreria')
 const menuPrestamos = document.querySelector('#menuPrestamos')
-menuLibreria.addEventListener('click', ()=>{
+menuLibreria.addEventListener('click', () => {
     renderLibreria();
     renderBooks(Biblioteca.libros)
 })
-menuPrestamos.addEventListener('click', ()=>{
+menuPrestamos.addEventListener('click', () => {
     renderPrestamosTab();
     renderPrestamos(Prestamos.prestamos)
 })
@@ -58,7 +62,7 @@ const formTituloLibro = document.querySelector('#formtitulo')
 const formAnhoLibro = document.querySelector('#formanho')
 const formGeneroLibro = document.querySelector('#formgenero')
 
-const formConfirmButton = document.querySelector('#prestamo-accept')
+const formConfirmButton = document.querySelector('#prestamo-devolver')
 const formCancelButton = document.querySelector('#prestamo-cancel')
 
 formCiCliente.addEventListener('input', () => {
@@ -99,13 +103,30 @@ function renderDevolucionTable(cliente) {
         const itemCell = document.createElement('tr');
         itemCell.classList.add('hoverable')
         itemCell.setAttribute('id', `item-${index}`)
+        itemCell.addEventListener('click', () => {
+            let libroEncontrado = Biblioteca.getLibroById(item.libro.id);
+            if (libroEncontrado !== undefined) {
+                formTituloLibro.value = libroEncontrado.titulo;
+                formAnhoLibro.value = libroEncontrado.anho;
+                formGeneroLibro.value = libroEncontrado.categoria;
+            } else {
+                formTituloLibro.value = `No encontrado`;
+                formAnhoLibro.value = `No encontrado`;
+                formGeneroLibro.value = `No encontrado`;
+            }
+        })
+        itemCell.style.cursor = "pointer";
+        const vencido = (item.fechadevolucion < new Date()) ? `Si` : `No`;
         itemCell.innerHTML = `
         <td>${index}</td>
         <td>${item.libro.titulo}</td>
         <td>${item.fecha.getDate()}/${item.fecha.getMonth() + 1}/${item.fecha.getFullYear()}</td>
         <td>${item.fechadevolucion.getDate()}/${item.fechadevolucion.getMonth() + 1}/${item.fechadevolucion.getFullYear()}</td>
-        <td>nose</td>
-        <td><button onclick="devolverLibro(${item.libro})">Devolver</button></td>
+        <td>${vencido}</td>
+        <td>
+            <input type="checkbox" id="devolver-${index}" value="devolver-${index}" class="book-checkbox"> 
+            <label for="devolver-${index}">Devolver</label>
+        </td>
         `
 
         newTableBody.appendChild(itemCell);
@@ -117,5 +138,19 @@ function renderDevolucionTable(cliente) {
 }
 
 function addTableEventListeners() {
-
+    formConfirmButton.addEventListener('click', () => {
+        const bookCheckboxes = Array(document.querySelectorAll('.book-checkbox'))
+        const books = bookCheckboxes.map(checkbox => checkbox.value)
+        console.log(books)
+        //CHECKEAR VALIDACION DE CAMPOS
+        /**/
+        //Prestamos.quitarPrestamo(prestamo);
+        /**/
+        //toggleComponent(formDisplay);
+    })
+    
+    formCancelButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        toggleComponent(formDisplay);
+    })
 }

@@ -54,6 +54,7 @@ function addEventListeners() {
         Prestamos.agregarPrestamo(nuevoPrestamo);
         //toggleComponent(formDisplay);
     })
+    
     formCancelButton.addEventListener('click', (e) => {
         e.preventDefault();
         toggleComponent(formDisplay);
