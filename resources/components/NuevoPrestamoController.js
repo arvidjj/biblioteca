@@ -18,7 +18,7 @@ function addEventListeners() {
     formCiCliente.addEventListener('input', () => {
         let clienteEncontrado = Clientes.getCliente(formCiCliente.value);
         if (clienteEncontrado !== undefined) {
-            formNombreCliente.value = clienteEncontrado.nombre;
+            formNombreCliente.value = `${clienteEncontrado.nombre} ${clienteEncontrado.apellido}`;
         } else {
             formNombreCliente.value = `No encontrado`;
         }

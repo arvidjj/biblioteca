@@ -49,7 +49,7 @@ menuPrestamos.addEventListener('click', () => {
 
 
 /*DEVOLUCION FORM*/
-const formDisplay = document.querySelector('.nuevo-prestamo')
+const formDisplay = document.querySelector('.nuevo-devolucion')
 const formPrestamo = document.querySelector('.nuevo-prestamo-form')
 
 const formCiCliente = document.querySelector('#formci')
@@ -62,13 +62,13 @@ const formTituloLibro = document.querySelector('#formtitulo')
 const formAnhoLibro = document.querySelector('#formanho')
 const formGeneroLibro = document.querySelector('#formgenero')
 
-const formConfirmButton = document.querySelector('#prestamo-devolver')
-const formCancelButton = document.querySelector('#prestamo-cancel')
+const formConfirmButton = document.querySelector('#devolucion-devolver')
+const formCancelButton = document.querySelector('#devolucion-cancel')
 
 formCiCliente.addEventListener('input', () => {
     let clienteEncontrado = Clientes.getCliente(formCiCliente.value);
     if (clienteEncontrado !== undefined) {
-        formNombreCliente.value = clienteEncontrado.nombre;
+        formNombreCliente.value = `${clienteEncontrado.nombre} ${clienteEncontrado.apellido}`;
         renderDevolucionTable(clienteEncontrado)
     } else {
         formNombreCliente.value = `No encontrado`;
@@ -124,8 +124,8 @@ function renderDevolucionTable(cliente) {
         <td>${item.fechadevolucion.getDate()}/${item.fechadevolucion.getMonth() + 1}/${item.fechadevolucion.getFullYear()}</td>
         <td>${vencido}</td>
         <td>
-            <input type="checkbox" id="devolver-${index}" value="devolver-${index}" class="book-checkbox"> 
-            <label for="devolver-${index}">Devolver</label>
+            <input type="checkbox" id="devolver-${index}" value="devolver-${item.id}" class="book-checkbox"> 
+            <label for="devolver-${item.id}">Devolver</label>
         </td>
         `
 
@@ -139,18 +139,23 @@ function renderDevolucionTable(cliente) {
 
 function addTableEventListeners() {
     formConfirmButton.addEventListener('click', () => {
-        const bookCheckboxes = Array(document.querySelectorAll('.book-checkbox'))
-        const books = bookCheckboxes.map(checkbox => checkbox.value)
-        console.log(books)
+        const prestamosCheckboxes = Array.from(document.querySelectorAll('.book-checkbox'))
+        const prestamos = prestamosCheckboxes.filter(checkbox => checkbox.checked)
         //CHECKEAR VALIDACION DE CAMPOS
         /**/
-        //Prestamos.quitarPrestamo(prestamo);
+        
         /**/
-        //toggleComponent(formDisplay);
-    })
+        prestamos.forEach(prestamo => { //RETORNA LOS LIBROS SELECCIONADOS
+            const id = +prestamo.value.split("-")[1];
+            const prestamoSeleccionado = Prestamos.getPrestamoById(id)
+            Prestamos.quitarPrestamo(prestamoSeleccionado);
+        })
+        
+        toggleComponent(formDisplay);
+    });
     
     formCancelButton.addEventListener('click', (e) => {
         e.preventDefault();
         toggleComponent(formDisplay);
-    })
+    });
 }

@@ -13,6 +13,9 @@ function quitarPrestamo(...prestamo) {
 function getPrestamosFromCliente(cliente) {
     return Prestamos.filter(prestamo => prestamo.cliente === cliente)
 }
+function getPrestamoById(id) {
+    return Prestamos.find(prestamo => prestamo.id === id)
+}
 const item1 = new Prestamo(Clientes.getCliente('111'), Libros.getLibro('A Titulo')
                             , new Date(2022, 10, 11), new Date(2022,10, 20))
 Clientes.getCliente('111').prestarLibro(Libros.getLibro('A Titulo'));
@@ -27,4 +30,4 @@ agregarPrestamo(item1);
 agregarPrestamo(item2);
 agregarPrestamo(item3);
 
-export { Prestamos as prestamos, agregarPrestamo, quitarPrestamo, getPrestamosFromCliente };
+export { Prestamos as prestamos, agregarPrestamo, quitarPrestamo, getPrestamosFromCliente, getPrestamoById };
