@@ -91,7 +91,11 @@ button {
         }
     }
 }
-
+#themeButton {
+    padding: 5px;
+    border-radius:50%;
+    background-color: $color;
+}
 select {
     width: 200px;
     height: 30px;
@@ -116,6 +120,26 @@ header {
         margin-inline: auto;
     }
 
+    .desktop-header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        .userCorner {
+            padding:1rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+
+            img {
+                height: 55px;
+                width: auto;
+                border-radius: 50%;
+            }
+        }
+
+    }
+
     @include devices(desktop) {
         background-color: white;
         justify-content: flex-start;
@@ -132,6 +156,12 @@ header {
                 border: 1px solid black;
                 content: '';
             }
+        }
+
+        .userControl img {
+            height: 90px;
+            width: auto;
+            border-radius: 50%;
         }
     }
 
@@ -397,6 +427,7 @@ table {
         &.hoverable:hover {
             background-color: #f3f3f3;
         }
+
         &:nth-of-type(even) {
             background-color: #f3f3f3;
         }
@@ -412,9 +443,10 @@ table {
     }
 }
 
-.nuevo-prestamo, .nuevo-devolucion{
+.nuevo-prestamo,
+.nuevo-devolucion {
     background-color: $background;
-    border: black 1px solid; 
+    border: black 1px solid;
     width: fit-content;
     border-radius: 16px;
     padding: 1rem;
@@ -427,53 +459,88 @@ table {
         color: red;
     }
 }
-.nuevo-devolucion{
+
+.nuevo-devolucion {
     flex-direction: column;
-    gap:15px;
+    gap: 15px;
     align-items: flex-start;
 }
 
 .form-data {
-    display:flex;
-    gap:15px;
-    @include devices(tablet){
+    display: flex;
+    gap: 15px;
+
+    @include devices(tablet) {
         flex-direction: column;
-        gap:0px;
+        gap: 0px;
     }
 }
-.nuevo-prestamo-form, .nuevo-devolucion-form {
-    display:flex;
-    flex-direction: column; 
+
+.nuevo-prestamo-form,
+.nuevo-devolucion-form {
+    display: flex;
+    flex-direction: column;
 }
 
-.devolucion-form-structure{
-    display:flex;
+.devolucion-form-structure {
+    display: flex;
     flex-direction: column;
-    gap:15px;
-} 
+    gap: 15px;
+}
 
 p {
-    margin:0;
-    margin-top:5px;
+    margin: 0;
+    margin-top: 5px;
 }
+
 .form-row {
     display: flex;
-    gap:15px;
+    gap: 15px;
     margin-block: 10px;
 }
+
 .form-column {
     display: flex;
     flex-direction: column;
     margin-block: 15px;
 }
+
 .row-field {
     display: flex;
     flex-direction: column;
 }
+
 .form-buttons {
     display: flex;
     justify-content: space-between;
     width: 100%;
+}
+
+.login-screen {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    padding: 1rem;
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        .login-row {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}
+
+.filter-fecha {
+    padding: 1rem;
+    border: 1px solid black;
+    border-radius: 12px;
+    form {
+        display: flex;
+        align-items: center;
+        gap:15px;
+    }
 }
 
 footer {
