@@ -352,6 +352,10 @@ table tbody tr.active-row {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 1rem;
+}
+.nuevo-prestamo span, .nuevo-devolucion span {
+  color: red;
 }
 
 .nuevo-devolucion {

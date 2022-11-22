@@ -1,24 +1,32 @@
-const formDisplay = document.querySelector('.nuevo-prestamo')
-const formPrestamo = document.querySelector('.nuevo-prestamo-form')
+import * as Biblioteca from '../functions/LibrosController.js';
+import * as Prestamos from '../functions/PrestamosController.js';
+import Prestamo from '../functions/Prestamo.js'
+import * as Clientes from '../functions/ClientesController.js';
 
-const formCiCliente = document.querySelector('#formci')
-const formIdLibro = document.querySelector('#formid')
-const formDiasLibro = document.querySelector('#formdias')
-
-const formNombreCliente = document.querySelector('#formnombre')
-
-const formTituloLibro = document.querySelector('#formtitulo')
-const formAnhoLibro = document.querySelector('#formanho')
-const formGeneroLibro = document.querySelector('#formgenero')
-
-const formConfirmButton = document.querySelector('#prestamo-accept')
-const formCancelButton = document.querySelector('#prestamo-cancel')
+import { render, toggleComponent } from '../functions/render.js';
 
 function addEventListeners() {
+    const formDisplay = document.querySelector('.nuevo-prestamo')
+    const formPrestamo = document.querySelector('.nuevo-prestamo-form')
+
+    const formCiCliente = document.querySelector('#formci')
+    const formCiError = document.querySelector('#info-cliente')
+    const formIdLibro = document.querySelector('#formid')
+    const formDiasLibro = document.querySelector('#formdias')
+
+    const formNombreCliente = document.querySelector('#formnombre')
+
+    const formTituloLibro = document.querySelector('#formtitulo')
+    const formAnhoLibro = document.querySelector('#formanho')
+    const formGeneroLibro = document.querySelector('#formgenero')
+
+    const formConfirmButton = document.querySelector('#prestamo-accept')
+    const formCancelButton = document.querySelector('#prestamo-cancel')
     formCiCliente.addEventListener('input', () => {
         let clienteEncontrado = Clientes.getCliente(formCiCliente.value);
         if (clienteEncontrado !== undefined) {
             formNombreCliente.value = `${clienteEncontrado.nombre} ${clienteEncontrado.apellido}`;
+            formCiError.textContent = ''
         } else {
             formNombreCliente.value = `No encontrado`;
         }
@@ -27,6 +35,7 @@ function addEventListeners() {
     formIdLibro.addEventListener('input', () => {
         let libroEncontrado = Biblioteca.getLibroById(+formIdLibro.value);
         if (libroEncontrado !== undefined) {
+
             formTituloLibro.value = libroEncontrado.titulo;
             formAnhoLibro.value = libroEncontrado.anho;
             formGeneroLibro.value = libroEncontrado.categoria;
@@ -42,6 +51,12 @@ function addEventListeners() {
         e.preventDefault();
 
         //CHECKEAR VALIDACION DE CAMPOS
+        let clienteEncontrado = Clientes.getCliente(formCiCliente.value);
+        if (formCiCliente.value === '' || clienteEncontrado === undefined) {
+            formCiError.textContent = 'Cliente Invalido'
+            return
+        }
+
         /**/
         const hoy = new Date();
         const vencimiento = new Date()
@@ -54,7 +69,7 @@ function addEventListeners() {
         Prestamos.agregarPrestamo(nuevoPrestamo);
         //toggleComponent(formDisplay);
     })
-    
+
     formCancelButton.addEventListener('click', (e) => {
         e.preventDefault();
         toggleComponent(formDisplay);
@@ -62,8 +77,10 @@ function addEventListeners() {
 }
 
 function renderForm() {
-    return `
-    <div class="nuevo-prestamo" style="display:none">
+    const nuevoPrestamo = document.createElement('div');
+    nuevoPrestamo.classList.add('nuevo-prestamo')
+
+    nuevoPrestamo.innerHTML = `
             <h1>Nuevo Prestamo</h1>
             <form action="" class="nuevo-prestamo-form">
                 <div class="form-row">
@@ -103,8 +120,8 @@ function renderForm() {
                     <button id="prestamo-accept">Confirmar Prestamo</button>
                     <button id="prestamo-cancel">Cancelar</button>
                 </div>
-            </form>
-        </div>`
+            </form>`
+    return nuevoPrestamo;
 }
 
-export default renderForm;
+export { renderForm, addEventListeners };

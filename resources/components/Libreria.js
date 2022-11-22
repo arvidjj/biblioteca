@@ -8,7 +8,6 @@ function renderBooks(booksToRender) {
     console.log('rendering Items...')
     const menuItemContainer = document.querySelector('#book-container');
     menuItemContainer.innerHTML = '';
-    console.log(booksToRender)
 
     booksToRender.forEach((item, index) => {
         const itemImage = `./resources/images/libros/${item.imagen}` //obtener imagen
