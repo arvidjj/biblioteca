@@ -7,8 +7,8 @@ const Prestamos = [];
 function agregarPrestamo(prestamo) {
     Prestamos.push(prestamo);
 }
-function quitarPrestamo(...prestamo) {
-    Clientes.getCliente(prestamo.cliente.ci).devolverLibro(prestamo.libro); //actualiza libros prestados en clase cliente
+function quitarPrestamo(prestamo) {
+    //Clientes.getCliente(prestamo.cliente.ci).devolverLibro(prestamo.libro); //actualiza libros prestados en clase cliente
     Prestamos.splice(Prestamos.indexOf(prestamo), 1); //actualiza prestamo en clase prestamos
 }
 function getPrestamosFromCliente(cliente) {
@@ -17,6 +17,8 @@ function getPrestamosFromCliente(cliente) {
 function getPrestamoById(id) {
     return Prestamos.find(prestamo => prestamo.id === id)
 }
+
+/**/
 const item1 = new Prestamo(Clientes.getCliente('111'), Libros.getLibro('A Titulo')
     , new Date(2022, 10, 11), new Date(2022, 10, 20));
 Clientes.getCliente('111').prestarLibro(Libros.getLibro('A Titulo'));

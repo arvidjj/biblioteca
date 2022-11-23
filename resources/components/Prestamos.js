@@ -102,8 +102,17 @@ function renderComponent() {
                     </ul>
                 </div>
                 <div class="prestamos-main">
-                    <button class="btn2" id="nuevo-prestamo">Nuevo Prestamo</button>
-                    <button class="btn2" id="nuevo-devolucion">Devolucion</button>
+                    <div class="prestamos-buttons">
+                        <button class="btn2" id="nuevo-prestamo"><span class="material-symbols-outlined">
+                        arrow_circle_right
+                        </span>Nuevo Prestamo</button>
+                        <button class="btn2" id="nuevo-devolucion"><span class="material-symbols-outlined">
+                        arrow_circle_left
+                        </span>Devolucion</button>
+                        <button class="btn2" id="buscar-rango-fecha"><span class="material-symbols-outlined">
+                        date_range
+                        </span>Buscar por rango de fecha</button>
+                    </div>
                     <div class="prestamos-container" id="prestamos-container">
                     </div>
                 </div>
@@ -114,20 +123,67 @@ function renderComponent() {
     const clientesButton = document.querySelector('#clientes-table-button')
     const nuevoPrestamoButton = document.querySelector('#nuevo-prestamo')
     const nuevoDevolucionButton = document.querySelector('#nuevo-devolucion')
-    prestamosButton.addEventListener('click', ()=>{
+    const rangoFechaButton = document.querySelector('#buscar-rango-fecha')
+    prestamosButton.addEventListener('click', () => {
         renderPrestamos(Prestamos.prestamos);
     })
-    clientesButton.addEventListener('click', ()=>{
+    clientesButton.addEventListener('click', () => {
         renderClientes(Clientes.clientes);
     })
-    nuevoPrestamoButton.addEventListener('click', ()=>{
+    nuevoPrestamoButton.addEventListener('click', () => {
         render(PrestamoForm.renderForm(), document.querySelector('.prestamos-container'));
         PrestamoForm.addEventListeners();
     })
-    nuevoDevolucionButton.addEventListener('click', ()=>{
+    nuevoDevolucionButton.addEventListener('click', () => {
         render(DevolucionForm.renderForm(), document.querySelector('.prestamos-container'));
         DevolucionForm.addEventListeners();
     })
+    rangoFechaButton.addEventListener('click', () => {
+        renderDateFilter()
+    })
+}
+
+function renderDateFilter() {
+    const filterDiv = document.createElement('div')
+    filterDiv.classList.add('filter-fecha')
+    filterDiv.innerHTML = `
+    <h2>Buscar Prestamos por rango de fecha</h2>
+        <form action="" id="fecha-form">
+            <p>Prestamos del </p>
+            <input type="date" name="fechainicial" id="fechainicial">
+            <p>al</p>
+            <input type="date" name="fechafinal" id="fechafinal">
+            <button>Buscar</button>
+       </form>
+    `
+    render(filterDiv, document.querySelector('.prestamos-container'));
+
+    const filterForm = document.querySelector('#fecha-form')
+    const fechaInicial = document.querySelector('#fechainicial')
+    const fechaFinal = document.querySelector('#fechafinal')
+    filterForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (fechaInicial.value !== '' && fechaFinal.value !== ''){
+            let [yearInicial, monthInicial, dayInicial] = fechaInicial.value.split('-');
+            monthInicial = monthInicial - 1;
+            const transformedInicial = new Date(+yearInicial, +monthInicial, +dayInicial);
+
+            let [yearFinal, monthFinal, dayFinal] = fechaFinal.value.split('-');
+            monthFinal = monthFinal - 1;
+            const transformedFinal = new Date(+yearFinal, +monthFinal, +dayFinal);
+
+            renderPrestamos(sortPrestamos(transformedInicial, transformedFinal));
+        }
+    })
+}
+
+//SORT POR FECHA
+function sortPrestamos(inicial, final) { 
+    let sortedPrestamos = []
+    sortedPrestamos = Prestamos.prestamos.filter(prestamo =>
+                                ((prestamo.fecha >= inicial) && (prestamo.fecha <= final))
+                                                )
+    return sortedPrestamos;
 }
 
 export { renderPrestamos, renderComponent };

@@ -21,11 +21,11 @@ import * as LoginController from './functions/LoginStatus.js'
 
 const mainContent = document.querySelector('#content');
 
-//  renderLibreria();
-//  renderBooks(Biblioteca.libros)
+//renderLibreria();
+//renderBooks(Biblioteca.libros)
 
-//  renderPrestamosTab();
-//  renderPrestamos(Prestamos.prestamos)
+renderPrestamosTab();
+renderPrestamos(Prestamos.prestamos)
 
 // toggleComponent(document.querySelector('.prestamos-layout'))
 

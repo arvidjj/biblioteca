@@ -36,6 +36,8 @@ button {
   font-size: 1rem;
   border: none;
   background-color: #4747a5;
+  display: flex;
+  align-items: center;
 }
 button:hover {
   background-color: #5757d1;
@@ -257,6 +259,11 @@ main {
 .book-options p {
   margin: 0;
 }
+.book-options form {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
 @media only screen and (min-width: 1000px) {
   .book-options {
     width: 50%;
@@ -323,6 +330,10 @@ main {
 .prestamos-options {
   display: flex;
   flex-direction: column;
+  border: 1px solid black;
+  padding: 1rem;
+  border-radius: 12px;
+  height: 100%;
 }
 .prestamos-options h2 {
   margin: 0;
@@ -333,6 +344,11 @@ main {
 }
 .prestamos-options ul li {
   margin: 1rem;
+}
+
+.prestamos-buttons {
+  display: flex;
+  gap: 15px;
 }
 
 table {
@@ -464,6 +480,7 @@ p {
   padding: 1rem;
   border: 1px solid black;
   border-radius: 12px;
+  margin: 1rem;
 }
 .filter-fecha form {
   display: flex;
