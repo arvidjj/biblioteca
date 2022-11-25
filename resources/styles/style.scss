@@ -460,7 +460,8 @@ table {
 }
 
 .nuevo-prestamo,
-.nuevo-devolucion {
+.nuevo-devolucion,
+#crearbook-screen {
     background-color: $background;
     border: black 1px solid;
     width: fit-content;
@@ -493,7 +494,8 @@ table {
 }
 
 .nuevo-prestamo-form,
-.nuevo-devolucion-form {
+.nuevo-devolucion-form,
+#crear-book-form {
     display: flex;
     flex-direction: column;
 }
@@ -511,6 +513,7 @@ p {
 
 .form-row {
     display: flex;
+    justify-content: space-between;
     gap: 15px;
     margin-block: 10px;
 }
@@ -524,6 +527,11 @@ p {
 .row-field {
     display: flex;
     flex-direction: column;
+}
+
+#new-descripcion {
+    height: 50px;
+    resize: none;
 }
 
 .form-buttons {

@@ -1,8 +1,11 @@
 import * as Biblioteca from '../functions/LibrosController.js';
-import render from '../functions/render.js';
+import { render, toggleComponent} from '../functions/render.js';
+import Libro from '../functions/Libro.js'
 
 const mainContent = document.querySelector('#content');
-const bookList = Biblioteca.libros;
+
+
+
 
 function renderBooks(booksToRender) {
     console.log('rendering Items...')
@@ -10,7 +13,8 @@ function renderBooks(booksToRender) {
     menuItemContainer.innerHTML = '';
 
     booksToRender.forEach((item, index) => {
-        const itemImage = `./resources/images/libros/${item.imagen}` //obtener imagen
+        const itemImage = item.imagen//getBase64(item.image) //obtener imagen
+        console.log(item.imagen);
         const itemCard = document.createElement('div');
         const estado = item.stock === 0 ? `Sin stock: ${item.stock}` : `En stock: ${item.stock}`
         itemCard.classList.add('container-item')
@@ -65,6 +69,10 @@ function renderComponent() {
         const option = filterOption.value;
         renderBooks(sortBooks(option));
     })
+    const addBookButton = document.querySelector('#add-book-button')
+    addBookButton.addEventListener('click', () => {
+        renderCrearBook();
+    })
 }
 
 function sortBooks(parameter = 'titulo') { //por defecto titulo
@@ -77,6 +85,99 @@ function sortBooks(parameter = 'titulo') { //por defecto titulo
             (b1, b2) => (b1.autores < b2.autores) ? -1 : (b1.autores > b2.autores) ? 1 : 0);
     }
     return sortedBooks;
+}
+
+function renderCrearBook() {
+    const crearBookDiv = document.createElement('div')
+    crearBookDiv.setAttribute('id', 'crearbook-screen')
+    crearBookDiv.innerHTML = `
+        <h2>Agregar Nuevo Libro</h2>
+        <form action="" id="crear-book-form">
+            <div class="form-row">
+                <label for="new-titulo">Titulo</label>
+                <input type="text" name="new-titulo" id="new-titulo">
+            </div>
+            <div class="form-row">
+                <label for="new-descripcion">Descripcion</label>
+                <textarea name="new-descripcion" id="new-descripcion"></textarea>
+            </div>
+            <div class="form-row">
+                <label for="new-autores">Autores</label>
+                <input type="text" name="new-autores" id="new-autores">
+            </div>
+            <div class="form-row">
+                <label for="new-anho">Año</label>
+                <input type="number" name="new-anho" id="new-anho">
+            </div>
+            <div class="form-row">
+                <label for="new-categoria">Categoria</label>
+                <input type="text" name="new-categoria" id="new-categoria">
+            </div>
+            <div class="form-row">
+                <label for="new-editorial">Editorial</label>
+                <input type="text" name="new-editorial" id="new-editorial">
+            </div>
+            <div class="form-row">
+                <label for="new-stock">Stock</label>
+                <input type="number" name="new-stock" id="new-stock">
+            </div>
+            <div class="form-row">
+                <label for="new-imagen">Imagen</label>
+                <input type="file" accept="image/png, image/gif, image/jpeg" name="new-imagen" id="new-imagen"
+                >
+            </div>
+
+            <div class="form-buttons">
+                <button type="submit">Agregar</button>
+                <button id="cancelar-agregar">Cancelar</button>
+            </div>
+        </form>
+    `
+
+    render(crearBookDiv, document.querySelector('.book-container'));
+
+    const agregarForm = document.querySelector('#crear-book-form')
+    const cancelarForm = document.querySelector('#cancelar-agregar')
+
+    const inputTitulo = document.querySelector('#new-titulo')
+    const inputDescripcion = document.querySelector('#new-descripcion')
+    const inputAutores = document.querySelector('#new-autores')
+    const inputAnho = document.querySelector('#new-anho')
+    const inputCategoria = document.querySelector('#new-categoria')
+    const inputEditorial = document.querySelector('#new-editorial')
+    const inputStock = document.querySelector('#new-stock')
+    const inputImagen = document.querySelector('#new-imagen')
+    //transformar imagen a string
+    cancelarForm.addEventListener('click', (e) => {
+        e.preventDefault();
+    })
+    function getBase64(file) {
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function () {
+          return reader.result;
+        };
+        reader.onerror = function (error) {
+          console.log('Error: ', error);
+        };
+     }
+    agregarForm.addEventListener('submit', (e) => {
+        e.preventDefault(); 
+        const imagen = getBase64(inputImagen.files[0]);
+        const nuevoBook = new Libro(
+            inputTitulo.value,
+            inputDescripcion.value,
+            inputAutores.value,
+            inputAnho.value,
+            inputCategoria.value,
+            inputEditorial.value,
+            inputStock.value,
+            imagen
+            
+        )
+        Biblioteca.agregarLibro(nuevoBook);
+        renderBooks(Biblioteca.libros);
+    })
 }
 
 export { renderBooks, renderComponent };

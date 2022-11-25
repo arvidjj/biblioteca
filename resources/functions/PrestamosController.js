@@ -8,7 +8,7 @@ function agregarPrestamo(prestamo) {
     Prestamos.push(prestamo);
 }
 function quitarPrestamo(prestamo) {
-    //Clientes.getCliente(prestamo.cliente.ci).devolverLibro(prestamo.libro); //actualiza libros prestados en clase cliente
+    Clientes.getCliente(prestamo.cliente.ci).devolverLibro(prestamo.libro); //actualiza libros prestados en clase cliente
     Prestamos.splice(Prestamos.indexOf(prestamo), 1); //actualiza prestamo en clase prestamos
 }
 function getPrestamosFromCliente(cliente) {

@@ -13,7 +13,7 @@ const prestamosList = Prestamos.prestamos;
 function renderPrestamos(prestamosToRender) {
     console.log('rendering Items...')
     const menuItemContainer = document.querySelector('#prestamos-container');
-    menuItemContainer.innerHTML = '<h2>Prestamos</h2>';
+    menuItemContainer.innerHTML = '<h2 id="titulo-prestamos">Prestamos</h2>';
     const newTable = document.createElement('table');
     const newTableBody = document.createElement('tbody');
     newTable.innerHTML = `
@@ -173,6 +173,9 @@ function renderDateFilter() {
             const transformedFinal = new Date(+yearFinal, +monthFinal, +dayFinal);
 
             renderPrestamos(sortPrestamos(transformedInicial, transformedFinal));
+            document.querySelector('#titulo-prestamos').textContent = `
+                Prestamos entre el ${fechaInicial.value} al ${fechaFinal.value}
+            `
         }
     })
 }
