@@ -35,24 +35,24 @@ button {
   font-weight: bold;
   font-size: 1rem;
   border: none;
-  background-color: #4747a5;
+  background-color: #1dc88a;
   display: flex;
   align-items: center;
 }
 button:hover {
-  background-color: #5757d1;
+  background-color: #179466;
 }
 button:active {
   transform: translateY(1px);
 }
 button.active {
-  background-color: #5757d1;
+  background-color: #179466;
 }
 button.btn2 {
-  background-color: #13a3e0;
+  background-color: #3f65d4;
 }
 button.btn2:hover {
-  background-color: #51b7e2;
+  background-color: #5d7cda;
 }
 
 #themeButton {
@@ -64,10 +64,10 @@ button.btn2:hover {
 select {
   width: 200px;
   height: 30px;
-  border: 1px solid #4747a5;
+  border: 1px solid #1dc88a;
   font-size: 1rem;
   font-weight: bold;
-  color: #13a3e0;
+  color: #3f65d4;
   background-color: #eee;
 }
 
@@ -76,7 +76,7 @@ label {
 }
 
 header {
-  background-color: #13a3e0;
+  background-color: #3f65d4;
   display: flex;
   justify-content: center;
 }
@@ -84,12 +84,11 @@ header h1 {
   margin-inline: auto;
 }
 header .desktop-header {
-  width: 100%;
+  width: 95%;
   display: flex;
   justify-content: space-between;
 }
 header .desktop-header .userCorner {
-  padding: 1rem;
   display: flex;
   align-items: center;
   gap: 5px;
@@ -107,9 +106,11 @@ header .desktop-header .userCorner img {
     grid-row: 1/1;
   }
   header h1 {
+    text-align: center;
     margin-inline: 1rem;
     margin: 2rem;
-    margin-bottom: 1rem;
+    margin-block: 0;
+    margin-top: 10px;
   }
   header h1::before {
     border: 1px solid black;
@@ -127,7 +128,7 @@ header #hamburger-icon {
   align-items: center;
   justify-content: center;
   font-size: 3rem;
-  background-color: #13a3e0;
+  background-color: #3f65d4;
   padding: 1rem;
   border: 1px solid black;
   border-radius: 6px 0 6px 6px;
@@ -161,7 +162,7 @@ header #hamburger-icon {
   background-color: white;
   padding-top: 110px;
   margin: 0;
-  border-bottom: 5px solid #13a3e0;
+  border-bottom: 5px solid #3f65d4;
 }
 .mobile-menu li {
   margin: 20px;
@@ -172,8 +173,8 @@ header #hamburger-icon {
 .mobile-button {
   padding: 0.5rem;
   font-size: 2rem;
-  border: 1px solid #13a3e0;
-  background-color: #13a3e0;
+  border: 1px solid #3f65d4;
+  background-color: #3f65d4;
 }
 
 .open {
@@ -185,11 +186,11 @@ header #hamburger-icon {
 }
 
 strong {
-  color: #13a3e0;
+  color: #3f65d4;
 }
 
 hr {
-  border: 1px solid #13a3e0;
+  border: 1px solid #3f65d4;
   width: 100%;
 }
 
@@ -202,8 +203,10 @@ nav {
     grid-column: 1;
     grid-row: 1/3;
     width: 220px;
-    border-right: 2px solid #13a3e0;
+    border-right: 2px solid #3f65d4;
     font-size: 1.2rem;
+    color: white;
+    background-color: #3f65d4;
   }
   nav.navBar {
     display: flex;
@@ -212,8 +215,24 @@ nav {
   nav.navBar .dashboardDiv {
     display: flex;
     padding-inline: 40px;
+    margin: 0.5rem;
+  }
+  nav.navBar .dashboardDiv h2 {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  nav.navBar .dashboardDiv h2 span {
+    font-size: 2.5rem;
+  }
+  nav.navBar ul {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 1rem;
   }
   nav.navBar ul li a {
+    color: white;
     display: flex;
     align-items: center;
     gap: 20px;
@@ -225,6 +244,7 @@ nav {
     grid-column: 2;
     grid-row: 2;
     padding: 1rem;
+    background-color: #f1f2f5;
   }
 }
 
@@ -236,9 +256,16 @@ main {
 @media only screen and (min-width: 1000px) {
   main {
     align-items: flex-start;
+    background-color: white;
+    border: 1px solid transparent;
+    border-radius: 6px;
   }
-  main h1 {
+  main .mini-header {
+    background-color: #f8f9fd;
     width: 100%;
+  }
+  main .mini-header h1 {
+    padding-left: 15px;
   }
 }
 
@@ -247,6 +274,7 @@ main {
   flex-direction: column;
   align-items: center;
   width: 100%;
+  padding: 1rem;
 }
 
 .book-options {
@@ -325,6 +353,7 @@ main {
 .prestamos-layout {
   display: flex;
   gap: 15px;
+  padding: 1rem;
 }
 
 .prestamos-options {
@@ -349,6 +378,7 @@ main {
 .prestamos-buttons {
   display: flex;
   gap: 15px;
+  margin: 10px;
 }
 
 table {
@@ -359,7 +389,7 @@ table {
   min-width: 400px;
 }
 table thead tr {
-  background-color: #4747a5;
+  background-color: #1dc88a;
   color: #ffffff;
   text-align: left;
 }
@@ -377,16 +407,17 @@ table tbody tr:nth-of-type(even) {
   background-color: #f3f3f3;
 }
 table tbody tr:last-of-type {
-  border-bottom: 2px solid #4747a5;
+  border-bottom: 2px solid #1dc88a;
 }
 table tbody tr.active-row {
   font-weight: bold;
-  color: #4747a5;
+  color: #1dc88a;
 }
 
 .nuevo-prestamo,
 .nuevo-devolucion,
-#crearbook-screen {
+#crearbook-screen,
+.crearcliente-div {
   background-color: white;
   border: black 1px solid;
   width: -webkit-fit-content;
@@ -401,8 +432,13 @@ table tbody tr.active-row {
 }
 .nuevo-prestamo span,
 .nuevo-devolucion span,
-#crearbook-screen span {
+#crearbook-screen span,
+.crearcliente-div span {
   color: red;
+}
+
+.crearcliente-div h2 {
+  margin-block: 5px;
 }
 
 .nuevo-devolucion {
@@ -450,7 +486,7 @@ p {
 .form-column {
   display: flex;
   flex-direction: column;
-  margin-block: 15px;
+  margin-block: 5px;
 }
 
 .row-field {
@@ -474,6 +510,7 @@ p {
   flex-direction: column;
   border: 1px solid black;
   padding: 1rem;
+  background-color: white;
 }
 .login-screen form {
   display: flex;
@@ -499,8 +536,7 @@ p {
 
 footer {
   margin-top: auto;
-  background-color: #13a3e0;
-  padding: 1.5rem;
+  background-color: #3f65d4;
   color: white;
   display: flex;
   align-items: center;
@@ -511,4 +547,8 @@ footer {
     grid-column: 1/3;
     grid-row: 3;
   }
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 1;
 }/*# sourceMappingURL=style.css.map */

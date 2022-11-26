@@ -12,6 +12,7 @@ function addEventListeners() {
     const formCiCliente = document.querySelector('#formci')
     const formCiError = document.querySelector('#info-cliente')
     const formIdLibro = document.querySelector('#formid')
+    const formLibroError = document.querySelector('#info-libro')
     const formDiasLibro = document.querySelector('#formdias')
 
     const formNombreCliente = document.querySelector('#formnombre')
@@ -35,10 +36,10 @@ function addEventListeners() {
     formIdLibro.addEventListener('input', () => {
         let libroEncontrado = Biblioteca.getLibroById(+formIdLibro.value);
         if (libroEncontrado !== undefined) {
-
             formTituloLibro.value = libroEncontrado.titulo;
             formAnhoLibro.value = libroEncontrado.anho;
             formGeneroLibro.value = libroEncontrado.categoria;
+            formLibroError.textContent = ''
         } else {
             formTituloLibro.value = `No encontrado`;
             formAnhoLibro.value = `No encontrado`;
@@ -56,7 +57,11 @@ function addEventListeners() {
             formCiError.textContent = 'Cliente Invalido'
             return
         }
-
+        let libroEncontrado = Biblioteca.getLibroById(+formIdLibro.value);
+        if (formIdLibro.value === '' || libroEncontrado === undefined) {
+            formLibroError.textContent = 'Libro Invalido'
+            return
+        }
         /**/
         const hoy = new Date();
         const vencimiento = new Date()

@@ -16,4 +16,11 @@ function signIn(user, pass) {
     }
 }
 
-export {currentUser, isLoggedIn, signIn};
+
+
+function updateUser() {
+    const usernameCorner = document.querySelector('#corner-username');
+    usernameCorner.textContent = isLoggedIn ? currentUser.username : 'Guest';
+}
+
+export {currentUser, isLoggedIn, signIn, updateUser};

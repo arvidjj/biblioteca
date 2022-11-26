@@ -2,14 +2,12 @@ import { render, toggleComponent } from './functions/render.js';
 import {
     renderBooks,
     renderComponent as renderLibreria
-}
-    from './components/Libreria.js'
+} from './components/Libreria.js'
 
 import {
     renderPrestamos,
     renderComponent as renderPrestamosTab
-}
-    from './components/Prestamos.js'
+} from './components/Prestamos.js'
 
 import * as Biblioteca from './functions/LibrosController.js';
 import * as Prestamos from './functions/PrestamosController.js';
@@ -18,14 +16,15 @@ import * as Clientes from './functions/ClientesController.js';
 
 import * as UserDatabase from './functions/UserController.js'
 import * as LoginController from './functions/LoginStatus.js'
+import * as loginScreen from './components/Login.js'
 
 const mainContent = document.querySelector('#content');
 
-renderLibreria();
-renderBooks(Biblioteca.libros)
+//renderLibreria();
+//renderBooks(Biblioteca.libros)
 
-//renderPrestamosTab();
-//renderPrestamos(Prestamos.prestamos)
+renderPrestamosTab();
+renderPrestamos(Prestamos.prestamos)
 
 // toggleComponent(document.querySelector('.prestamos-layout'))
 
@@ -51,11 +50,15 @@ menuPrestamos.addEventListener('click', () => {
 
 /*HEADER*/
 
-const usernameCorner = document.querySelector('#corner-username');
+const loginButton = document.querySelector('#login-button');
+loginButton.addEventListener('click', ()=>{
+    render(loginScreen.renderLogin(), mainContent)
+    loginScreen.addEventsLogin();
+})
 
-function updateUser() {
-    usernameCorner.textContent = LoginController.isLoggedIn ? LoginController.currentUser.username : 'Guest';
+function checkLoginButtons(){
+    if (LoginController.isLoggedIn) {
+        toggleComponent(loginButton)
+    }
 }
-updateUser();
-
 

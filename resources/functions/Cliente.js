@@ -10,7 +10,6 @@ export default class Cliente {
         this.librosPrestados.push(libro)
     }
     devolverLibro(libro) {
-        console.log(libro)
         this.librosPrestados.splice(this.librosPrestados.indexOf(libro), 1);
     }
     get librosPrestados() {

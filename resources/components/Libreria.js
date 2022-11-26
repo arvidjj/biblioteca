@@ -42,7 +42,9 @@ function renderComponent() {
     const main = document.createElement('main');
     main.setAttribute('id', 'main-libreria');
     main.innerHTML = `
-    <h1><strong>Libreria</strong></h1>
+    <div class="mini-header">
+        <h1><strong>Libreria</strong></h1>
+    </div>
             <hr>
             <div class="books-display">
                 <div class="book-options">
@@ -150,6 +152,7 @@ function renderCrearBook() {
     //transformar imagen a string
     cancelarForm.addEventListener('click', (e) => {
         e.preventDefault();
+        renderBooks(Biblioteca.libros);
     })
     function getBase64(file) {
         var reader = new FileReader();
