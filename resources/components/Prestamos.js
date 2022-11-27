@@ -1,6 +1,6 @@
-import * as Biblioteca from '../functions/LibrosController.js';
-import * as Prestamos from '../functions/PrestamosController.js';
-import * as Clientes from '../functions/ClientesController.js';
+import * as Biblioteca from '../functions/controllers/LibrosController.js';
+import * as Prestamos from '../functions/controllers/PrestamosController.js';
+import * as Clientes from '../functions/controllers/ClientesController.js';
 import Cliente from '../functions/Cliente.js' //para agregar
 
 import * as PrestamoForm from './NuevoPrestamoController.js';

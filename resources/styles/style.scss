@@ -294,6 +294,12 @@ nav {
                         display: flex;
                         align-items: center;
                         gap: 20px;
+                        padding: 0.5rem;
+                    }
+
+                    &:hover {
+                        background-color: $main-color-light;
+                        border-radius: 22px;
                     }
                 }
             }
@@ -322,11 +328,14 @@ main {
         background-color: $background;
         border: 1px solid transparent;
         border-radius: 6px;
+
         .mini-header {
             background-color: $background-notorio;
             width: 100%;
+            border: 1px solid transparent;
+            border-radius: 6px;
             h1 {
-                padding-left:15px;
+                padding-left: 15px;
             }
         }
     }
@@ -336,7 +345,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    width: 95%;
     padding: 1rem;
 }
 
@@ -378,10 +387,9 @@ main {
     scroll-behavior: auto;
 
     @include devices(desktop) {
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         grid-auto-rows: auto;
         gap: 15px;
-        align-self: center;
         width: 100%;
     }
 
@@ -424,7 +432,7 @@ main {
 .prestamos-layout {
     display: flex;
     gap: 15px;
-    padding:1rem;
+    padding: 1rem;
 }
 
 .prestamos-options {
@@ -513,11 +521,13 @@ table {
         color: red;
     }
 }
-.crearcliente-div{
-    h2{
-        margin-block:5px;
+
+.crearcliente-div {
+    h2 {
+        margin-block: 5px;
     }
 }
+
 .nuevo-devolucion {
     flex-direction: column;
     gap: 15px;
@@ -583,20 +593,38 @@ p {
 
 .login-screen {
     display: flex;
-    flex-direction: column;
-    border: 1px solid black;
-    padding: 1rem;
-    background-color: $background;
-    form {
+    width: 100%;
+    justify-content: center;
+
+    .login-container {
         display: flex;
         flex-direction: column;
-        gap: 15px;
+        align-items: center;
+        border: 1px solid black;
+        padding: 2rem;
+        background-color: $background;
 
-        .login-row {
+        h2 {
+            margin-block: 5px;
+        }
+
+        form {
             display: flex;
             flex-direction: column;
+            gap: 15px;
+            align-items: center;
+
+            .login-row {
+                display: flex;
+                flex-direction: column;
+            }
+
+            span {
+                color: red;
+            }
         }
     }
+
 }
 
 .filter-fecha {

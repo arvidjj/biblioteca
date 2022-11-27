@@ -1,4 +1,4 @@
-import * as UserDatabase from './UserController.js'
+import * as UserDatabase from './controllers/UserController.js'
 
 let currentUser = 'guest';
 let isLoggedIn = false;
@@ -7,12 +7,12 @@ let isLoggedIn = false;
 function signIn(user, pass) {
     const userFind = UserDatabase.findUser(user, pass);
     if (userFind) {
-        alert("Welcome " + userFind.username)
         currentUser = userFind;
         isLoggedIn = true;
+        return true;
     } else {
-        alert("Wrong username or password!")
         isLoggedIn = false;
+        return false;
     }
 }
 

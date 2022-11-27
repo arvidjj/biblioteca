@@ -1,4 +1,4 @@
-import Prestamo from './Prestamo.js'
+import Prestamo from '../Prestamo.js'
 import * as Clientes from './ClientesController.js';
 import * as Libros from './LibrosController.js';
 

@@ -1,7 +1,7 @@
-import * as Biblioteca from '../functions/LibrosController.js';
-import * as Prestamos from '../functions/PrestamosController.js';
+import * as Biblioteca from '../functions/controllers/LibrosController.js';
+import * as Prestamos from '../functions/controllers/PrestamosController.js';
 import Prestamo from '../functions/Prestamo.js'
-import * as Clientes from '../functions/ClientesController.js';
+import * as Clientes from '../functions/controllers/ClientesController.js';
 
 import { render, toggleComponent } from '../functions/render.js';
 

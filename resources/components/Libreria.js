@@ -1,11 +1,8 @@
-import * as Biblioteca from '../functions/LibrosController.js';
+import * as Biblioteca from '../functions/controllers/LibrosController.js';
 import { render, toggleComponent} from '../functions/render.js';
 import Libro from '../functions/Libro.js'
 
 const mainContent = document.querySelector('#content');
-
-
-
 
 function renderBooks(booksToRender) {
     console.log('rendering Items...')

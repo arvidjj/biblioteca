@@ -1,4 +1,4 @@
-import Libro from './Libro.js'
+import Libro from '../Libro.js'
 
 const Biblioteca = [];
 
