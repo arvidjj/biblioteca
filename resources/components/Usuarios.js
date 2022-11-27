@@ -1,6 +1,7 @@
 import { render, toggleComponent } from '../functions/render.js';
 
 import * as UserDatabase from '../functions/controllers/UserController.js'
+import User from '../functions/User.js';
 import * as LoginController from '../functions/LoginStatus.js'
 
 const mainContent = document.querySelector('#content');
@@ -10,6 +11,7 @@ function renderComponent() {
     main.innerHTML = `
     <div class="mini-header">
         <h1><strong>Usuarios</strong></h1>
+    </div>
         <hr>
             <div class="prestamos-layout">
                 <div class="prestamos-options">
@@ -19,13 +21,16 @@ function renderComponent() {
                     </ul>
                 </div>
                 <div class="usuarios-main">
+                    <div class="usuarios-buttons"><button id="registrar-usuario">Registrar Usuario</button></div>
                     <div class="usuarios-container" id="usuarios-container"></div>
-            </div>
         </div>
     </div>
     `
-
     render(main, mainContent)
+    const registrarUsuario = document.querySelector('#registrar-usuario')
+    registrarUsuario.addEventListener('click', () => {
+        renderNewUserForm();
+    })
 }
 
 function renderUsuarios(usuariosToRender) {
@@ -63,4 +68,37 @@ function renderUsuarios(usuariosToRender) {
     menuItemContainer.appendChild(newTable)
 }
 
-export {renderComponent, renderUsuarios}
+function renderNewUserForm() {
+    const newUserScreen = document.createElement('div')
+    newUserScreen.classList.add('newuser-screen')
+    newUserScreen.innerHTML = `
+        <h2>Registrar nuevo usuario</h2>
+                <form action="" id="new-user-form">
+                    <div class="row-field">
+                        <label for="username">Usuario</label>
+                        <input type="text" name="username" id="username">
+                    </div>
+                    <div class="row-field">
+                        <label for="password">Contrasena</label>
+                        <input type="password" name="password" id="password">
+                    </div>
+                    <span class="new-user-message"></span>
+                    <div class="form-buttons" style="margin-top:10px">
+                        <button type="submit">Registrar</button>
+                    </div>
+                </form>
+    `
+    render(newUserScreen, document.querySelector('#usuarios-container'));
+    const loginForm = document.querySelector('#new-user-form');
+    const loginUser = document.querySelector('#username')
+    const loginPassword = document.querySelector('#password')
+    const loginMessage = document.querySelector('.new-user-message')
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const nuevoUsuario = new User(loginUser.value, loginPassword.value)
+        UserDatabase.addUser(nuevoUsuario)
+        renderUsuarios(UserDatabase.userDatabase)
+    })
+}
+
+export { renderComponent, renderUsuarios }

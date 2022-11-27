@@ -1,5 +1,5 @@
 import * as Biblioteca from '../functions/controllers/LibrosController.js';
-import * as Prestamos from '../functions/controllers/PrestamosController.js';
+import * as Prestamos from '../functions/controllers/PrestamosController.js'
 import * as Clientes from '../functions/controllers/ClientesController.js';
 import Cliente from '../functions/Cliente.js' //para agregar
 

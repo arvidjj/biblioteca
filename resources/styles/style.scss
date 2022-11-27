@@ -506,7 +506,8 @@ table {
 .nuevo-prestamo,
 .nuevo-devolucion,
 #crearbook-screen,
-.crearcliente-div {
+.crearcliente-div,
+.newuser-screen {
     background-color: $background;
     border: black 1px solid;
     width: fit-content;
@@ -546,7 +547,8 @@ table {
 
 .nuevo-prestamo-form,
 .nuevo-devolucion-form,
-#crear-book-form {
+#crear-book-form,
+#new-user-form {
     display: flex;
     flex-direction: column;
 }

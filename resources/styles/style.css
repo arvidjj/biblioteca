@@ -423,7 +423,8 @@ table tbody tr.active-row {
 .nuevo-prestamo,
 .nuevo-devolucion,
 #crearbook-screen,
-.crearcliente-div {
+.crearcliente-div,
+.newuser-screen {
   background-color: white;
   border: black 1px solid;
   width: -webkit-fit-content;
@@ -439,7 +440,8 @@ table tbody tr.active-row {
 .nuevo-prestamo span,
 .nuevo-devolucion span,
 #crearbook-screen span,
-.crearcliente-div span {
+.crearcliente-div span,
+.newuser-screen span {
   color: red;
 }
 
@@ -466,7 +468,8 @@ table tbody tr.active-row {
 
 .nuevo-prestamo-form,
 .nuevo-devolucion-form,
-#crear-book-form {
+#crear-book-form,
+#new-user-form {
   display: flex;
   flex-direction: column;
 }

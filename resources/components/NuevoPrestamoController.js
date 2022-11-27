@@ -70,7 +70,7 @@ function addEventListeners() {
         const vencimiento = new Date()
         vencimiento.setDate(hoy.getDate() + +formDiasLibro.value); //obtener fecha de vencimiento
         const nuevoPrestamo = new Prestamo //SE GENERA NUEVO PRESTAMO
-            (Clientes.getCliente(formCiCliente.value), [Biblioteca.getLibroById(+formIdLibro.value)]
+            (Clientes.getCliente(formCiCliente.value), Biblioteca.getLibroById(+formIdLibro.value)
                 , hoy, vencimiento);
         /**/
         console.log(nuevoPrestamo)
