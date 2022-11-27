@@ -27,11 +27,16 @@ function renderBooks(booksToRender) {
                     <p>${estado}</p>
                     <p>ID: ${item.id}</p>
                 </div>
+                <button id="modificar-libro-${item.id}">Modificar</button>
             </div>
         `
 
         menuItemContainer.appendChild(itemCard);
         console.log(`rendering ${index}`)
+        const modificarLibro = document.querySelector(`#modificar-libro-${item.id}`)
+        modificarLibro.addEventListener('click', ()=>{
+            renderModificar(item)
+        })
     })
 }
 
@@ -176,6 +181,91 @@ function renderCrearBook() {
             
         )
         Biblioteca.agregarLibro(nuevoBook);
+        renderBooks(Biblioteca.libros);
+    })
+}
+
+//modificar libro a traves de objeto, no id
+function renderModificar(libro){
+    //const libro = Biblioteca.getLibroById(libroId);
+    const modificarBookDiv = document.createElement('div')
+    modificarBookDiv.setAttribute('id', 'crearbook-screen')
+    modificarBookDiv.innerHTML = `
+        <h2>Modificar Libro ID: ${libro.id}</h2>
+        <form action="" id="modificar-libro-form">
+        <div class="form-row">
+                <label for="new-titulo">Titulo</label>
+                <input type="text" name="new-titulo" id="new-titulo" value="${libro.titulo}">
+            </div>
+            <div class="form-row">
+                <label for="new-descripcion">Descripcion</label>
+                <textarea name="new-descripcion" id="new-descripcion">${libro.descripcion}</textarea>
+            </div>
+            <div class="form-row">
+                <label for="new-autores">Autores</label>
+                <input type="text" name="new-autores" id="new-autores" value="${libro.autores}">
+            </div>
+            <div class="form-row">
+                <label for="new-anho">Año</label>
+                <input type="number" name="new-anho" id="new-anho" value="${libro.anho}">
+            </div>
+            <div class="form-row">
+                <label for="new-categoria">Categoria</label>
+                <input type="text" name="new-categoria" id="new-categoria" value="${libro.categoria}">
+            </div>
+            <div class="form-row">
+                <label for="new-editorial">Editorial</label>
+                <input type="text" name="new-editorial" id="new-editorial" value="${libro.editorial}">
+            </div>
+            <div class="form-row">
+                <label for="new-stock">Stock</label>
+                <input type="number" name="new-stock" id="new-stock" value="${libro.stock}">
+            </div>
+            <div class="form-row">
+                <label for="new-imagen">Imagen</label>
+                <input type="file" accept="image/png, image/gif, image/jpeg" name="new-imagen" id="new-imagen"
+                >
+            </div>
+
+            <div class="form-buttons">
+                <button type="submit">Guardar Modificacion</button>
+                <button id="cancelar-modificar">Cancelar</button>
+            </div>
+        </form>
+    `
+    render(modificarBookDiv, document.querySelector('.book-container'));
+
+    const guardarForm = document.querySelector('#modificar-libro-form')
+    const cancelarForm = document.querySelector('#cancelar-modificar')
+
+    const inputTitulo = document.querySelector('#new-titulo')
+    const inputDescripcion = document.querySelector('#new-descripcion')
+    const inputAutores = document.querySelector('#new-autores')
+    const inputAnho = document.querySelector('#new-anho')
+    const inputCategoria = document.querySelector('#new-categoria')
+    const inputEditorial = document.querySelector('#new-editorial')
+    const inputStock = document.querySelector('#new-stock')
+    const inputImagen = document.querySelector('#new-imagen')
+
+    cancelarForm.addEventListener('click', (e) => {
+        e.preventDefault();
+        renderBooks(Biblioteca.libros);
+    })
+    guardarForm.addEventListener('submit', (e) => {
+        e.preventDefault(); 
+        const imagen = ''//getBase64(inputImagen.files[0]);
+        const nuevoBook = new Libro(
+            inputTitulo.value,
+            inputDescripcion.value,
+            inputAutores.value,
+            inputAnho.value,
+            inputCategoria.value,
+            inputEditorial.value,
+            inputStock.value,
+            imagen
+            
+        )
+        Biblioteca.modificarLibro(libro ,nuevoBook);
         renderBooks(Biblioteca.libros);
     })
 }

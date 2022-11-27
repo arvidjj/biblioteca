@@ -5,6 +5,10 @@ const Biblioteca = [];
 function agregarLibro(libro) {
     Biblioteca.push(libro);
 }
+function modificarLibro(libroViejo, libroNuevo) {
+    libroNuevo.id = libroViejo.id
+    Biblioteca[Biblioteca.indexOf(libroViejo)] = libroNuevo;
+}
 function getLibro(titulo) {
     return Biblioteca.find(libro => titulo === libro.titulo);
 }
@@ -25,4 +29,4 @@ agregarLibro(item2);
 agregarLibro(item3);
 agregarLibro(item4);
 
-export { Biblioteca as libros, agregarLibro, getLibro, getLibroById };
+export { Biblioteca as libros, agregarLibro, modificarLibro, getLibro, getLibroById };

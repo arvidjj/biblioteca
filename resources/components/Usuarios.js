@@ -40,6 +40,7 @@ function renderUsuarios(usuariosToRender) {
                 <th>#</th>
                 <th>ID</th>
                 <th>Usuario</th>
+                <th>Rol</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -52,6 +53,7 @@ function renderUsuarios(usuariosToRender) {
         <td>${index}</td>
         <td>${item.id}</td>
         <td>${item.username}</td>
+        <td></td>
         <td></td>
         `
 
