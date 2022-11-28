@@ -1,8 +1,9 @@
 export default class User {
-    constructor(username, password) {
+    constructor(username, password, rol) {
         this.id = User.incrementId()
         this.username = username
         this.password = password
+        this.rol = rol;
     }
 
     static incrementId() {

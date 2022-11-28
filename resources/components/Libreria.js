@@ -11,7 +11,6 @@ function renderBooks(booksToRender) {
 
     booksToRender.forEach((item, index) => {
         const itemImage = item.imagen//getBase64(item.image) //obtener imagen
-        console.log(item.imagen);
         const itemCard = document.createElement('div');
         const estado = item.stock === 0 ? `Sin stock: ${item.stock}` : `En stock: ${item.stock}`
         itemCard.classList.add('container-item')
@@ -28,6 +27,7 @@ function renderBooks(booksToRender) {
                     <p>ID: ${item.id}</p>
                 </div>
                 <button id="modificar-libro-${item.id}">Modificar</button>
+                <button id="eliminar-libro-${item.id}" style="background-color:darkred">Eliminar</button>
             </div>
         `
 
@@ -36,6 +36,10 @@ function renderBooks(booksToRender) {
         const modificarLibro = document.querySelector(`#modificar-libro-${item.id}`)
         modificarLibro.addEventListener('click', ()=>{
             renderModificar(item)
+        })
+        const eliminarLibroButton = document.querySelector(`#eliminar-libro-${item.id}`)
+        eliminarLibroButton.addEventListener('click', ()=>{
+            eliminarLibro(item);
         })
     })
 }
@@ -271,6 +275,12 @@ function renderModificar(libro){
         renderBooks(Biblioteca.libros);
         localStorage.setItem("libros", JSON.stringify(Biblioteca.libros));
     })
+}
+
+function eliminarLibro(libro){
+    Biblioteca.quitarLibro(libro)
+    renderBooks(Biblioteca.libros);
+    localStorage.setItem("libros", JSON.stringify(Biblioteca.libros));
 }
 
 export { renderBooks, renderComponent };

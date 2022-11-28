@@ -344,6 +344,9 @@ main {
 .book-container .container-item .item-info p {
   margin: 0;
 }
+.book-container .container-item .item-info button {
+  justify-content: center;
+}
 .book-container .container-item .item-image {
   display: flex;
   justify-content: center;

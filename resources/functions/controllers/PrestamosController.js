@@ -1,5 +1,6 @@
 import Prestamo from '../Prestamo.js'
 import * as Clientes from './ClientesController.js';
+import Cliente from '../Cliente.js'
 import * as Libros from './LibrosController.js';
 
 let Prestamos = [];
@@ -11,6 +12,9 @@ function agregarPrestamo(prestamo) {
 function quitarPrestamo(prestamo) {
     Clientes.getCliente(prestamo.cliente.ci).devolverLibro(prestamo.libro); //actualiza libros prestados en clase cliente
     Prestamos.splice(Prestamos.indexOf(prestamo), 1); //actualiza prestamo en clase prestamos
+}
+function quitarPrestamos(cliente) {
+    Prestamos.filter(p => (p.cliente !== cliente)); //actualiza prestamo en clase prestamos
 }
 function getPrestamosFromCliente(cliente) {
     return Prestamos.filter(prestamo => prestamo.cliente.ci === cliente.ci)
@@ -36,4 +40,4 @@ agregarPrestamo(item2);
 agregarPrestamo(item3);
 /**/
 
-export { Prestamos as prestamos, agregarPrestamo, quitarPrestamo, getPrestamosFromCliente, getPrestamoById, setPrestamos };
+export { Prestamos as prestamos, agregarPrestamo, quitarPrestamo, quitarPrestamos, getPrestamosFromCliente, getPrestamoById, setPrestamos };

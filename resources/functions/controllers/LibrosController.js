@@ -18,6 +18,11 @@ function getLibroById(id) {
 function setBiblioteca(bibliotecaNueva) {
     Biblioteca = bibliotecaNueva
 }
+function quitarLibro(libro) {
+   //actualizar libros prestados en clase cliente
+   //--
+   Biblioteca.splice(Biblioteca.indexOf(libro), 1);
+}
 const item1 = new Libro('B Titulo', 'Un buen libro', 'B autor', '2001', 'Genero1', 'editorial',
 3, '../resources/images/libros/libroejemplo.png')
 const item2 = new Libro('D Titulo', 'Un mal libro', 'A autor', '2004', 'Genero1', 'lairotide',
@@ -32,4 +37,4 @@ agregarLibro(item2);
 agregarLibro(item3);
 agregarLibro(item4);
 
-export { Biblioteca as libros, agregarLibro, modificarLibro, getLibro, getLibroById, setBiblioteca };
+export { Biblioteca as libros, agregarLibro, quitarLibro, modificarLibro, getLibro, getLibroById, setBiblioteca };

@@ -14,11 +14,15 @@ import {
 } from './components/Usuarios.js'
 
 import * as Biblioteca from './functions/controllers/LibrosController.js';
+import Libro from './functions/Libro.js'
 import * as Prestamos from './functions/controllers/PrestamosController.js';
 import Prestamo from './functions/Prestamo.js'
 import * as Clientes from './functions/controllers/ClientesController.js';
+import Cliente from './functions/Cliente.js'
 
 import * as UserDatabase from './functions/controllers/UserController.js'
+import User from './functions/User.js'
+
 import * as LoginController from './functions/LoginStatus.js'
 import * as loginScreen from './components/Login.js'
 
@@ -41,10 +45,11 @@ mobileMenuButton.addEventListener('click', () => {
 
 /*LOCALSTORAGE*/
 
-Biblioteca.setBiblioteca(JSON.parse(localStorage.getItem("libros") || "[]"))
-Prestamos.setPrestamos(JSON.parse(localStorage.getItem("prestamos") || "[]")) ;
-Clientes.setClientes(JSON.parse(localStorage.getItem("clientes") || "[]"));
-UserDatabase.setUserDatabase(JSON.parse(localStorage.getItem("usuarios") || "[]"));
+
+Biblioteca.setBiblioteca(JSON.parse(localStorage.getItem("libros") || "[]").map(o=>(Object.assign(new Libro(), o))))
+Prestamos.setPrestamos(JSON.parse(localStorage.getItem("prestamos") || "[]").map(o=>(Object.assign(new Prestamo(), o)))) ;
+Clientes.setClientes(JSON.parse(localStorage.getItem("clientes") || "[]").map(o=>(Object.assign(new Cliente(), o))));
+UserDatabase.setUserDatabase(JSON.parse(localStorage.getItem("usuarios") || "[]").map(o=>(Object.assign(new User(), o))));
 
 /*NAVBAR*/
 

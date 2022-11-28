@@ -13,7 +13,7 @@ function findUser(user, pass) {
     return userDatabase.find((data) => data.username === user && data.password === pass)
 }
 
-const user1 = new User('angel', '123');
+const user1 = new User('angel', '123', 'admin');
 addUser(user1);
 
 export {userDatabase, addUser, findUser, setUserDatabase};

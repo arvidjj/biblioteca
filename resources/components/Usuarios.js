@@ -62,8 +62,8 @@ function renderUsuarios(usuariosToRender) {
         <td>${index}</td>
         <td>${item.id}</td>
         <td>${item.username}</td>
-        <td></td>
-        <td></td>
+        <td>${item.rol}</td>
+        <td> <button id="eliminar-usuario-${item.id}" style="background-color:darkred">Eliminar</button></td>
         `
 
         newTableBody.appendChild(itemCell);

@@ -175,10 +175,12 @@ function renderClientes(clientes) {
                 <th>CI</th>
                 <th>Libros Prestados</th>
                 <th>Multa</th>
+                <th>Acciones</th>
             </tr>
         </thead>
                         `
     newTable.appendChild(newTableBody)
+    menuItemContainer.appendChild(newTable)
     clientes.forEach((item, index) => {
         const itemCell = document.createElement('tr');
         itemCell.setAttribute('id', `item-${index}`)
@@ -189,12 +191,17 @@ function renderClientes(clientes) {
         <td>${item.ci}</td>
         <td>${item.librosPrestados.length}</td>
         <td>0</td>
+        <td><button id="eliminar-cliente-${item.ci}">Eliminar</button></td>
         `
 
         newTableBody.appendChild(itemCell);
         console.log(`rendering ${index}`)
+        const eliminarClienteButton = document.querySelector(`#eliminar-cliente-${item.ci}`)
+        eliminarClienteButton.addEventListener('click', ()=>{
+            eliminarCliente(item)
+        })
     })
-    menuItemContainer.appendChild(newTable)
+    
     const prestamosButtons = document.querySelector('.prestamos-buttons')
     prestamosButtons.innerHTML = `
     <button class="btn2" id="nuevo-cliente"><span class="material-symbols-outlined">
@@ -264,7 +271,7 @@ function renderNewClienteForm() {
         renderClientes(Clientes.clientes);
     })
     agregarForm.addEventListener('submit', (e) => {
-        e.preventDefault(); 
+        e.preventDefault();
         const nuevoCliente = new Cliente(
             newNombre.value,
             newApellido.value,
@@ -277,5 +284,10 @@ function renderNewClienteForm() {
     })
 }
 
+function eliminarCliente(cliente) {
+    Clientes.eliminarCliente(cliente)
+    renderClientes(Clientes.clientes);
+    localStorage.setItem("clientes", JSON.stringify(Clientes.clientes));
+}
 
-export { renderPrestamos, renderComponent };
+export { renderPrestamos, renderComponent }

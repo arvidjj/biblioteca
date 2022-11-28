@@ -12,6 +12,9 @@ export default class Cliente {
     devolverLibro(libro) {
         this.librosPrestados.splice(this.librosPrestados.indexOf(libro), 1);
     }
+    devolverAllLibros() {
+        this.librosPrestados = [];
+    }
     get librosPrestados() {
         this.librosPrestados;
     }
