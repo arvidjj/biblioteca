@@ -27,6 +27,10 @@ function renderComponent() {
     </div>
     `
     render(main, mainContent)
+    const renderUsuariosButton = document.querySelector('#usuarios-table-button')
+    renderUsuariosButton.addEventListener('click', () => {
+        renderUsuarios(UserDatabase.userDatabase);
+    })
     const registrarUsuario = document.querySelector('#registrar-usuario')
     registrarUsuario.addEventListener('click', () => {
         renderNewUserForm();
@@ -98,6 +102,8 @@ function renderNewUserForm() {
         const nuevoUsuario = new User(loginUser.value, loginPassword.value)
         UserDatabase.addUser(nuevoUsuario)
         renderUsuarios(UserDatabase.userDatabase)
+
+        localStorage.setItem("usuarios", JSON.stringify(UserDatabase.userDatabase));
     })
 }
 

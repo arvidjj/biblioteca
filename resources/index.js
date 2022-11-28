@@ -39,6 +39,13 @@ mobileMenuButton.addEventListener('click', () => {
     mobileMenu.classList.toggle('open')
 })
 
+/*LOCALSTORAGE*/
+
+Biblioteca.setBiblioteca(JSON.parse(localStorage.getItem("libros") || "[]"))
+Prestamos.setPrestamos(JSON.parse(localStorage.getItem("prestamos") || "[]")) ;
+Clientes.setClientes(JSON.parse(localStorage.getItem("clientes") || "[]"));
+UserDatabase.setUserDatabase(JSON.parse(localStorage.getItem("usuarios") || "[]"));
+
 /*NAVBAR*/
 
 const menuLibreria = document.querySelector('#menuLibreria')
@@ -65,5 +72,12 @@ loginButton.addEventListener('click', ()=>{
     loginScreen.addEventsLogin();
 })
 
+const logoutButton = document.querySelector('#logout-button');
+toggleComponent(logoutButton)
+logoutButton.addEventListener('click', ()=>{
+    LoginController.logout();
+})
 
 
+LoginController.signIn(localStorage.getItem("loggedusername"), localStorage.getItem("loggedpassword"));
+LoginController.updateUser()

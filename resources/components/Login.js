@@ -44,16 +44,8 @@ function addEventsLogin() {
             LoginController.updateUser()
             renderLibreria();
             renderBooks(Biblioteca.libros);
-            checkLoginButtons();
         }
     })
-}
-
-function checkLoginButtons() { //PARA ESCONDER BOTONES DE INICIAR SESION
-    const loginButton = document.querySelector('#login-button');
-    if (LoginController.isLoggedIn) {
-        toggleComponent(loginButton)
-    }
 }
 
 export { renderLogin, addEventsLogin };

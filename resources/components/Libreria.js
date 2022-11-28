@@ -168,7 +168,7 @@ function renderCrearBook() {
      }
     agregarForm.addEventListener('submit', (e) => {
         e.preventDefault(); 
-        const imagen = getBase64(inputImagen.files[0]);
+        const imagen = '../resources/images/libros/libroejemplo.png'//getBase64(inputImagen.files[0]);
         const nuevoBook = new Libro(
             inputTitulo.value,
             inputDescripcion.value,
@@ -182,6 +182,8 @@ function renderCrearBook() {
         )
         Biblioteca.agregarLibro(nuevoBook);
         renderBooks(Biblioteca.libros);
+
+        localStorage.setItem("libros", JSON.stringify(Biblioteca.libros));
     })
 }
 
@@ -267,6 +269,7 @@ function renderModificar(libro){
         )
         Biblioteca.modificarLibro(libro ,nuevoBook);
         renderBooks(Biblioteca.libros);
+        localStorage.setItem("libros", JSON.stringify(Biblioteca.libros));
     })
 }
 

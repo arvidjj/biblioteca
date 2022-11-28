@@ -1,6 +1,6 @@
 import Libro from '../Libro.js'
 
-const Biblioteca = [];
+let Biblioteca = [];
 
 function agregarLibro(libro) {
     Biblioteca.push(libro);
@@ -14,6 +14,9 @@ function getLibro(titulo) {
 }
 function getLibroById(id) {
     return Biblioteca.find(libro => id === libro.id);
+}
+function setBiblioteca(bibliotecaNueva) {
+    Biblioteca = bibliotecaNueva
 }
 const item1 = new Libro('B Titulo', 'Un buen libro', 'B autor', '2001', 'Genero1', 'editorial',
 3, '../resources/images/libros/libroejemplo.png')
@@ -29,4 +32,4 @@ agregarLibro(item2);
 agregarLibro(item3);
 agregarLibro(item4);
 
-export { Biblioteca as libros, agregarLibro, modificarLibro, getLibro, getLibroById };
+export { Biblioteca as libros, agregarLibro, modificarLibro, getLibro, getLibroById, setBiblioteca };

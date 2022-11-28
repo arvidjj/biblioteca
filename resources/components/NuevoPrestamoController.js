@@ -73,10 +73,11 @@ function addEventListeners() {
             (Clientes.getCliente(formCiCliente.value), Biblioteca.getLibroById(+formIdLibro.value)
                 , hoy, vencimiento);
         /**/
-        console.log(nuevoPrestamo)
         Prestamos.agregarPrestamo(nuevoPrestamo);
         toggleComponent(formDisplay);
         renderPrestamos(Prestamos.prestamos)
+
+        localStorage.setItem("prestamos", JSON.stringify(Prestamos.prestamos));
     })
 
     formCancelButton.addEventListener('click', (e) => {

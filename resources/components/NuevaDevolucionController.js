@@ -65,7 +65,6 @@ function renderDevolucionTable(cliente) {
     const prestamosDeCliente = Prestamos.getPrestamosFromCliente(cliente);
     const menuItemContainer = document.querySelector('#devolucion-container');
     menuItemContainer.innerHTML = ''
-    console.log(prestamosDeCliente)
     const clienteLabel = document.querySelector('#devolucion-cliente')
     clienteLabel.textContent = `Cliente: ${cliente.nombre} ${cliente.apellido}`
     const newTable = document.createElement('table');
@@ -103,12 +102,14 @@ function renderDevolucionTable(cliente) {
             }
         })
         itemCell.style.cursor = "pointer";
-        const vencido = (item.fechadevolucion < new Date()) ? `Si` : `No`;
+        const fechaDate = new Date(item.fecha);
+        const devolucionDate = new Date(item.fechadevolucion)
+        const vencido = (devolucionDate < new Date()) ? `Si` : `No`;
         itemCell.innerHTML = `
         <td>${index}</td>
         <td>${item.libro.titulo}</td>
-        <td>${item.fecha.getDate()}/${item.fecha.getMonth() + 1}/${item.fecha.getFullYear()}</td>
-        <td>${item.fechadevolucion.getDate()}/${item.fechadevolucion.getMonth() + 1}/${item.fechadevolucion.getFullYear()}</td>
+        <td>${fechaDate.getDate()}/${fechaDate.getMonth() + 1}/${fechaDate.getFullYear()}</td>
+        <td>${devolucionDate.getDate()}/${devolucionDate.getMonth() + 1}/${devolucionDate.getFullYear()}</td>
         <td>${vencido}</td>
         <td>
             <input type="checkbox" id="devolver-${index}" value="devolver-${item.id}" class="book-checkbox"> 
