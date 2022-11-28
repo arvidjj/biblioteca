@@ -251,7 +251,7 @@ function renderNewClienteForm() {
             <input type="text" name="new-ci" id="new-ci">
         </div>
 
-
+        <span id="error-message"></span>
         <div class="form-buttons" style="margin-top:10px;">
             <button type="submit">Agregar</button>
             <button id="cancelar-agregar">Cancelar</button>
@@ -266,12 +266,17 @@ function renderNewClienteForm() {
     const newNombre = document.querySelector('#new-nombre')
     const newApellido = document.querySelector('#new-apellido')
     const newCi = document.querySelector('#new-ci')
+    const errorMessage = document.querySelector('#error-message')
     cancelarForm.addEventListener('click', (e) => {
         e.preventDefault();
         renderClientes(Clientes.clientes);
     })
     agregarForm.addEventListener('submit', (e) => {
         e.preventDefault();
+        if (newNombre.value.length < 3 || newApellido.value.length < 3 || newCi.value.length < 3){
+            errorMessage.textContent = 'Existen campos invalidos'
+            return;
+        }
         const nuevoCliente = new Cliente(
             newNombre.value,
             newApellido.value,

@@ -55,6 +55,7 @@ function renderUsuarios(usuariosToRender) {
         </thead>
                         `
     newTable.appendChild(newTableBody)
+    menuItemContainer.appendChild(newTable)
     usuariosToRender.forEach((item, index) => {
         const itemCell = document.createElement('tr');
         itemCell.setAttribute('id', `item-${index}`)
@@ -68,8 +69,12 @@ function renderUsuarios(usuariosToRender) {
 
         newTableBody.appendChild(itemCell);
         console.log(`rendering ${index}`)
+        const eliminarUserButton = document.querySelector(`#eliminar-usuario-${item.id}`)
+        eliminarUserButton.addEventListener('click', ()=>{
+            eliminarUsuario(item)
+        })
     })
-    menuItemContainer.appendChild(newTable)
+    
 }
 
 function renderNewUserForm() {
@@ -86,9 +91,17 @@ function renderNewUserForm() {
                         <label for="password">Contrasena</label>
                         <input type="password" name="password" id="password">
                     </div>
+                    <div class="row-field">
+                        <label for="rol">Rol:</label>
+                        <select name="rol" id="rol">
+                            <option value="admin">Admin</option>
+                            <option value="normal">Normal</option>
+                        </select>
+                    </div>
                     <span class="new-user-message"></span>
-                    <div class="form-buttons" style="margin-top:10px">
+                    <div class="form-buttons" style="margin-top:10px; gap:10px;">
                         <button type="submit">Registrar</button>
+                        <button id="cancel-button">Cancelar</button>
                     </div>
                 </form>
     `
@@ -96,15 +109,31 @@ function renderNewUserForm() {
     const loginForm = document.querySelector('#new-user-form');
     const loginUser = document.querySelector('#username')
     const loginPassword = document.querySelector('#password')
+    const loginRol = document.querySelector('#rol')
+    const loginCancel =document.querySelector('#cancel-button')
     const loginMessage = document.querySelector('.new-user-message')
     loginForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const nuevoUsuario = new User(loginUser.value, loginPassword.value)
+        if (loginUser.value.length < 3 || loginPassword.value.length < 3){
+            loginMessage.textContent = 'Nombre o contraseña invalidas'
+            return;
+        }
+        const nuevoUsuario = new User(loginUser.value, loginPassword.value, loginRol.value)
         UserDatabase.addUser(nuevoUsuario)
         renderUsuarios(UserDatabase.userDatabase)
 
         localStorage.setItem("usuarios", JSON.stringify(UserDatabase.userDatabase));
     })
+    loginCancel.addEventListener('click', (e) => {
+        e.preventDefault();
+        renderUsuarios(UserDatabase.userDatabase)
+    })
+}
+
+function eliminarUsuario(user){
+    UserDatabase.eliminarUsuario(user)
+    renderUsuarios(UserDatabase.userDatabase)
+    localStorage.setItem("usuarios", JSON.stringify(UserDatabase.userDatabase));
 }
 
 export { renderComponent, renderUsuarios }
