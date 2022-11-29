@@ -28,14 +28,14 @@ import * as loginScreen from './components/Login.js'
 
 const mainContent = document.querySelector('#content');
 
-//renderLibreria();
-//renderBooks(Biblioteca.libros)
+renderLibreria();
+renderBooks(Biblioteca.libros)
 
 //renderPrestamosTab();
 //renderPrestamos(Prestamos.prestamos)
 
-renderUsuariosTab();
-renderUsuarios(UserDatabase.userDatabase)
+//renderUsuariosTab();
+//renderUsuarios(UserDatabase.userDatabase)
 
 const mobileMenuButton = document.querySelector('#hamburger-icon')
 const mobileMenu = document.querySelector('.mobile-menu')

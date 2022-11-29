@@ -183,6 +183,17 @@ function renderClientes(clientes) {
     menuItemContainer.appendChild(newTable)
     clientes.forEach((item, index) => {
         const itemCell = document.createElement('tr');
+
+        let multa = 0;
+        const prestamos = Prestamos.getPrestamosFromCliente(item)
+        prestamos.forEach(p => {
+            if (new Date(p.fechadevolucion) < new Date()){
+                const dias = new Date().getDate() - new Date(p.fechadevolucion).getDate() 
+                console.log(dias)
+                multa = 25000 * dias;
+            }
+        })
+
         itemCell.setAttribute('id', `item-${index}`)
         itemCell.innerHTML = `
         <td>${index}</td>
@@ -190,7 +201,7 @@ function renderClientes(clientes) {
         <td>${item.apellido}</td>
         <td>${item.ci}</td>
         <td>${item.librosPrestados.length}</td>
-        <td>0</td>
+        <td>${multa}</td>
         <td><button id="eliminar-cliente-${item.ci}">Eliminar</button></td>
         `
 
